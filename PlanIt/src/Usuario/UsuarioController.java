@@ -22,4 +22,8 @@ public class UsuarioController {
     public void deleteUser(int id) {
     	usuarioRepo.deleteUsuario(id);
     }
+    
+    public void show() {
+    	usuarioRepo.showUsuarios();
+    }
 }

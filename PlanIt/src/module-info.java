@@ -6,4 +6,5 @@
  *
  */
 module PlanIt {
+	requires java.sql;
 }

@@ -1,14 +1,16 @@
 package Usuario;
-
+import java.util.*;
 public class Usuario {
 	private int id;
-	private String nome;
+	private String nome = "";
 	private String email;
 	private String senha;
 	
-	public Usuario(String email, String senha) {
-		this.email = email;
-		this.senha = senha;
+	public Usuario() {
+	}
+	
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 	public void setNome(String nome) {
@@ -23,6 +25,7 @@ public class Usuario {
 		this.senha = senha;
 	}
 	
+	
 	public int getId() {
 		return this.id;
 	}
@@ -33,6 +36,14 @@ public class Usuario {
 	
 	public String getEmail() {
 		return this.email;
+	}
+	
+	public String getSenha() {
+		return this.senha;
+	}
+	
+	public void printUsuario() {
+		System.out.println("Nome: " + this.nome + " Email: " + this.email);
 	}
 	
 	

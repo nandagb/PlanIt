@@ -1,23 +1,20 @@
 package Usuario;
 import java.util.*;
 public class UsuarioRepo {
-	private List<Usuario> listaUsuario;
+	private UsuarioDAO usuarios;
+	private List<Usuario> listaUsuario = usuarios.obterTodosUsuarios();
+	
 	
 	public UsuarioRepo() {
-		listaUsuario = new ArrayList<Usuario>();
+		usuarios = new UsuarioDAO();
 	}
 	
 	public void addUsuario(Usuario usuario) {
-		listaUsuario.add(usuario);
+		usuarios.criarFuncionario(usuario);
 	}
 	
 	public Usuario getUsuarioById(int id) {
-		for (Usuario usuario : listaUsuario) {
-			if (usuario.getId() == id) {
-				return usuario;
-			}	
-		}
-		return null;
+		return usuarios.obterUsuario(id);
 	}
 	
 	public void updateUsuario(Usuario updateUsuario) {
@@ -32,5 +29,11 @@ public class UsuarioRepo {
 	
 	public void deleteUsuario(int id) {
 		listaUsuario.removeIf(usuario -> usuario.getId() == id);
+	}
+	
+	public void showUsuarios() {
+		for( Usuario usuario : listaUsuario) {
+			usuario.printUsuario();
+		}
 	}
 }
