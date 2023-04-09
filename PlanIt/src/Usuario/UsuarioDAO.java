@@ -175,6 +175,22 @@ public class UsuarioDAO {
 	          }
 	          return false;
 	      }
+	      
+	      public boolean deleteUsuario(Usuario usuario) {
+	          String string = "DELETE FROM usuario WHERE id = ?";
+	          PreparedStatement pst;
+	          try {
+	              pst = con.prepareStatement(string);
+	              pst.setInt(1, usuario.getId());
+	              int res = pst.executeUpdate();
+	              if(res == 1){
+	                  return true;
+	              }
+	          } catch (SQLException e) {
+	              throw new RuntimeException(e);
+	          }
+	          return false;
+	      }
 	       
 	       
 	       

@@ -34,8 +34,14 @@ public class UsuarioRepo {
 		usuarios.updateUsuario(updateUsuario);
 	}
 	
-	public void deleteUsuario(int id) {
-		listaUsuario.removeIf(usuario -> usuario.getId() == id);
+	public void deleteUsuario(Usuario usuario) {
+		if(usuarios.deleteUsuario(usuario)) {
+			System.out.println(" Usuário deletado com sucesso!");
+		}
+		else {
+			System.out.println("Não foi possível deletar o usuário!");
+		}
+		
 	}
 	
 	public void showUsuarios() {

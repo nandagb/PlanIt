@@ -103,6 +103,9 @@ public class Main {
 					
 						
 				}
+				else {
+					controlador.deleteUser(usuario1);
+				}
 				break;
 			}
 			System.out.println();

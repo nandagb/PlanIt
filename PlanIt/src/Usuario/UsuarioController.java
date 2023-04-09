@@ -23,8 +23,8 @@ public class UsuarioController {
     	usuarioRepo.updateUsuario(updatedUser);
     }
 
-    public void deleteUser(int id) {
-    	usuarioRepo.deleteUsuario(id);
+    public void deleteUser(Usuario usuario) {
+    	usuarioRepo.deleteUsuario(usuario);
     }
     
     public void show() {
