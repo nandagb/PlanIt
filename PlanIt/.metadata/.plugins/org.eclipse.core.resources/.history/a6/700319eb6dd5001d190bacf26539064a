@@ -1,0 +1,22 @@
+import java.util.*;
+
+import Usuario.Usuario;
+package Main;
+
+public class Main {
+	public static void main() {
+		Scanner scanner = new Scanner(System.in);
+		
+		System.out.println("Crie um usuário");
+		
+		System.out.println("Insira o email: ");
+		String email = scanner.nextLine();
+		
+		System.out.println("Insira sua senha: ");
+		String senha = scanner.nextLine();
+		
+		//criando usuario
+		Usuario usuario = new Usuario(email, senha);
+		
+	}
+}
