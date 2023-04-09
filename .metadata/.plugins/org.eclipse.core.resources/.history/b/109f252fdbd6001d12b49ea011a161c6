@@ -1,0 +1,111 @@
+package Main;
+
+
+import java.util.*;
+
+import Usuario.*;
+
+public class Main {
+	/**
+	 * @param args
+	 */
+	public static void main(String args[]) {
+		
+		int op=0;
+		Scanner scanner = new Scanner(System.in);
+		UsuarioController controlador = new UsuarioController();
+		
+		do {
+			System.out.println("Bem vindo ao PlanIt!");
+			System.out.println("O que deseja fazer?");
+			System.out.println("Digite 1 para listar os usuários:");
+			System.out.println("Digite 2 para cadastrar um usuário:");
+			System.out.println("Digite 3 para pesquisar um usuário:");
+			System.out.println("Digite 4 para sair.");
+			
+			op = scanner.nextInt();
+			
+			
+			switch(op) {
+			case 1: 
+				System.out.println("Usuários cadastrados:");
+				controlador.show();
+				break;
+			case 2:
+				scanner.nextLine();
+				System.out.println("Cadastre-se:");
+				Usuario usuario = new Usuario();
+				
+				System.out.println("Insira seu nome: ");
+				usuario.setNome(scanner.nextLine());
+				
+				System.out.println("Insira seu email: ");
+				usuario.setEmail(scanner.nextLine());
+				
+				System.out.println("Insira sua senha: ");
+				usuario.setSenha(scanner.nextLine());
+				
+				System.out.println("Insira seu id: ");
+				usuario.setId(scanner.nextInt());
+				
+				//adiciona o usuario ao banco
+				controlador.createUser(usuario);
+				break;
+			case 3:
+				scanner.nextLine();
+				System.out.println("Caso deseje encontrar o usuário pelo email, digite 1: ");
+				System.out.println("Caso deseje encontrar o usuário pelo id, digite 2: ");
+				if(scanner.nextInt() == 1) {
+					scanner.nextLine();
+					System.out.println("Digite o email: ");
+					Usuario usuario1 = controlador.getUserByEmail(scanner.nextLine());
+					usuario1.printUsuario();
+				}
+				else {
+					scanner.nextLine();
+					System.out.println("Digite o id: ");
+					Usuario usuario2 = controlador.getUserById(scanner.nextInt()); 
+					usuario2.printUsuario();
+					
+				}
+				System.out.println("Caso deseje editar o usuário, digite 1: ");
+				System.out.println("Caso deseje deletar o usuário, digite 2: ");
+				if(scanner.nextInt() == 1) {
+					int opEdit = 0;
+					do {
+						System.out.println("Digite 1 para editar o nome do usário: ");
+						System.out.println("Digite 2 para editar o email do usário: ");
+						System.out.println("Digite 3 para editar a senha do usário: ");
+						System.out.println("Digite 4 para editar o id do usário: ");
+						System.out.println("Digite 5 para voltar ao menu: ");
+						
+						switch(opEdit) {
+							case 1:
+								break;
+							case 2:
+								break;
+							case 3:
+								break;
+							case 4:
+								break;
+						}
+					}
+					while(opEdit != 5);
+					
+					
+					
+				}
+				break;
+			}
+			System.out.println();
+		}while(op != 4);
+		
+		System.out.println("Até logo!");
+		
+		//fecha scanner
+		scanner.close();
+		
+		
+		
+	}
+}

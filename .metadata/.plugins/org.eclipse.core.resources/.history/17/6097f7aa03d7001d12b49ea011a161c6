@@ -1,0 +1,39 @@
+package Usuario;
+
+import java.util.List;
+
+public class UsuarioController {
+    private UsuarioDAO usuarios;
+	private List<Usuario> listaUsuario;
+
+    public UsuarioController() {
+    	usuarios = new UsuarioDAO();
+		listaUsuario = usuarios.obterTodosUsuarios();
+    }
+
+    public void createUser(Usuario usuario) {
+    	usuarioRepo.addUsuario(usuario);
+    }
+
+    public Usuario getUserById(int id) {
+        return usuarioRepo.getUsuarioById(id);
+    }
+    
+    public Usuario getUserByEmail(String email) {
+        return usuarioRepo.getUsuarioByEmail(email);
+    }
+
+    public void updateUser(Usuario updatedUser) {
+    	usuarioRepo.updateUsuario(updatedUser);
+    }
+
+    public void deleteUser(Usuario usuario) {
+    	usuarioRepo.deleteUsuario(usuario);
+    }
+    
+    public void show() {
+    	usuarioRepo.showUsuarios();
+    }
+    
+    
+}

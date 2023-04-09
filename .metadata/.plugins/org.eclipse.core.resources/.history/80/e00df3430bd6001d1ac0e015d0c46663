@@ -1,0 +1,48 @@
+package Main;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.*;
+
+import Usuario.*;
+
+public class Main {
+	public static void main(String args[]) {
+		try {
+		    Class.forName("com.mysql.cj.jdbc.Driver");
+		    System.out.println("Driver JDBC do MySQL encontrado!");
+		} catch (ClassNotFoundException e) {
+		    System.out.println("Driver JDBC do MySQL não encontrado!");
+		}
+
+		
+		
+		Scanner scanner = new Scanner(System.in);
+		
+		System.out.println("Crie um usuário");
+		
+		System.out.println("Insira o email: ");
+		String email = scanner.nextLine();
+		
+		System.out.println("Insira sua senha: ");
+		String senha = scanner.nextLine();
+		
+		//criando usuario
+		Usuario usuario = new Usuario(email, senha);
+		
+		//adiciona o usuario ao banco
+		UsuarioController controlador = new UsuarioController();
+		controlador.createUser(usuario);
+		
+		//mostra os usuarios
+		System.out.println("Lista de usuários: ");
+		controlador.show();
+		
+		//fecha scanner
+		scanner.close();
+		
+		
+		
+	}
+}

@@ -1,0 +1,81 @@
+package Main;
+
+
+import java.util.*;
+
+import Usuario.*;
+
+public class Main {
+	/**
+	 * @param args
+	 */
+	public static void main(String args[]) {
+		
+		int op=0;
+		Scanner scanner = new Scanner(System.in);
+		UsuarioController controlador = new UsuarioController();
+		
+		do {
+			System.out.println("Bem vindo ao PlanIt!");
+			System.out.println("O que deseja fazer?");
+			System.out.println("Digite 1 para listar os usuários:");
+			System.out.println("Digite 2 para cadastrar um usuário:");
+			System.out.println("Digite 3 para pesquisar um usuário:");
+			System.out.println("Digite 4 para sair.");
+			
+			op = scanner.nextInt();
+			
+			switch(op) {
+			case 1: 
+				System.out.println("Usuários cadastrados:");
+				controlador.show();
+				break;
+			case 2:
+				System.out.println("Cadastre-se:");
+				Usuario usuario = new Usuario();
+				
+				System.out.println("Insira seu nome: ");
+				usuario.setNome(scanner.nextLine());
+				
+				System.out.println("Insira seu email: ");
+				usuario.setEmail(scanner.nextLine());
+				
+				System.out.println("Insira sua senha: ");
+				String senha = scanner.nextLine();
+				usuario.setSenha(senha);
+				
+				System.out.println("Insira seu id: ");
+				int id = scanner.nextInt();
+				usuario.setId(id);
+				
+				//adiciona o usuario ao banco
+				controlador.createUser(usuario);
+				break;
+			case 3: 
+				System.out.println("Caso deseje encontrar o usuário pelo email, digite 1: ");
+				System.out.println("Caso deseje encontrar o usuário pelo id, digite 2: ");
+				if(scanner.nextInt() == 1) {
+					System.out.println("Digite o email: ");
+					Usuario usuario1 = controlador.getUserByEmail(scanner.nextLine());
+					usuario1.printUsuario();
+				}
+				else {
+					System.out.println("Digite o id: ");
+					Usuario usuario2 = controlador.getUserById(scanner.nextInt()); 
+					usuario2.printUsuario();
+					
+				}
+				break;
+			}
+			System.out.println();
+		}while(op != 4);
+		
+		System.out.println("Até logo!");
+		
+		//fecha scanner
+		scanner.close();
+		
+		
+		
+	}
+}
