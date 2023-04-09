@@ -128,7 +128,8 @@ public class UsuarioDAO {
 	              return null;                                       
 	          }   
 	      
-	      public Usuario obterUsuarioEmail(String email) {               
+	      public Usuario obterUsuarioEmail(String email) {   	    	  
+	    	  
               String usuario = "SELECT * FROM usuario";        
 
               PreparedStatement ps;                                  
@@ -151,12 +152,29 @@ public class UsuarioDAO {
               } catch (SQLException ex) {                            
                   throw new RuntimeException(ex);                    
               }                                                      
-                                                                     
-              return null;                                       
+                                                                    
+              return null;                                    
           }  
 	       
 	       
-	       
+	      public boolean updateUsuario(Usuario usuario) {
+	          String string = "UPDATE usuario SET nome = ?, email = ?, senha = ? WHERE id = ?";
+	          PreparedStatement pst;
+	          try {
+	              pst = con.prepareStatement(string);
+	              pst.setString(1, usuario.getNome());
+	              pst.setString(2, usuario.getEmail());
+	              pst.setString(3, usuario.getSenha());
+	              pst.setInt(4, usuario.getId());
+	              int res = pst.executeUpdate();
+	              if(res == 1){
+	                  return true;
+	              }
+	          } catch (SQLException e) {
+	              throw new RuntimeException(e);
+	          }
+	          return false;
+	      }
 	       
 	       
 	       

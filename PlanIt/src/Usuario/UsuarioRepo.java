@@ -31,13 +31,7 @@ public class UsuarioRepo {
 	}
 	
 	public void updateUsuario(Usuario updateUsuario) {
-		for (Usuario usuario : listaUsuario) {
-            if (usuario.getId() == updateUsuario.getId()) {
-                usuario.setNome(updateUsuario.getNome());
-                usuario.setEmail(updateUsuario.getEmail());
-                break;
-            }
-        }
+		usuarios.updateUsuario(updateUsuario);
 	}
 	
 	public void deleteUsuario(int id) {

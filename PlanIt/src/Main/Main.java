@@ -74,11 +74,10 @@ public class Main {
 				if(scanner.nextInt() == 1) {
 					int opEdit = 0;
 					do {
-						System.out.println("Digite 1 para editar o nome do usário: ");
-						System.out.println("Digite 2 para editar o email do usário: ");
-						System.out.println("Digite 3 para editar a senha do usário: ");
-						System.out.println("Digite 4 para editar o id do usário: ");
-						System.out.println("Digite 5 para voltar ao menu: ");
+						System.out.println("Digite 1 para editar o nome do usuário: ");
+						System.out.println("Digite 2 para editar o email do usuário: ");
+						System.out.println("Digite 3 para editar a senha do usuário: ");
+						System.out.println("Digite 4 para voltar ao menu: ");
 						opEdit = scanner.nextInt();
 						switch(opEdit) {
 							case 1:
@@ -96,14 +95,12 @@ public class Main {
 								System.out.println("Digite a nova senha: ");
 								usuario1.setSenha(scanner.nextLine());
 								break;
-							case 4:
-								scanner.nextLine();
-								System.out.println("Digite o novo id: ");
-								usuario1.setId(scanner.nextInt());
-								break;
 						}
 					}
-					while(opEdit != 5);
+					while(opEdit != 4);
+					//atualiza o usuario
+					controlador.updateUser(usuario1);
+					
 						
 				}
 				break;
