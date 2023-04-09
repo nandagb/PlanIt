@@ -43,7 +43,7 @@ public class Usuario {
 	}
 	
 	public void printUsuario() {
-		System.out.println("Nome: " + this.nome + " Email: " + this.email);
+		System.out.println("Nome: " + this.nome + " Email: " + this.email + " Id: " + this.id);
 	}
 	
 	

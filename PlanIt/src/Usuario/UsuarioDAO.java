@@ -15,7 +15,7 @@ public class UsuarioDAO {
 
 	    public UsuarioDAO() {
 	        if (con == null) {
-	            con = new DBConnection().getConnection(DBDriver.MYSQL, "planit", "root", "V3r3@dor3sMYSQL");
+	            con = new DBConnection().getConnection(DBDriver.MYSQL, "planit", "root", "");
 	        }
 	    }
 	    
@@ -50,6 +50,23 @@ public class UsuarioDAO {
 	            ResultSet res = pst.executeQuery();
 	            if (res.next()) {
 	                if (res.getLong("id") == usuario.getId()) {
+	                    return true;
+	                }
+	            }
+	        } catch (SQLException ex) {
+	            throw new RuntimeException(ex);
+	        }
+	        return false;
+	    }
+	    
+	    public boolean emailEmUso(Usuario usuario) {
+	        try {
+	            String emailEmUso = "SELECT email FROM usuario WHERE email = ?";
+	            PreparedStatement pst = con.prepareStatement(emailEmUso);
+	            pst.setString(1, usuario.getEmail());
+	            ResultSet res = pst.executeQuery();
+	            if (res.next()) {
+	                if ( res.getString("email").equals(usuario.getEmail()) ) {
 	                    return true;
 	                }
 	            }
@@ -109,7 +126,34 @@ public class UsuarioDAO {
 	              }                                                      
 	                                                                     
 	              return null;                                       
-	          }                                                          
+	          }   
+	      
+	      public Usuario obterUsuarioEmail(String email) {               
+              String usuario = "SELECT * FROM usuario";        
+
+              PreparedStatement ps;                                  
+                
+              try {                                                  
+                  ps = con.prepareStatement(usuario);                  
+                  ResultSet rs = ps.executeQuery();    
+                  while (rs.next()) {                                
+                      Usuario a = new Usuario();                     
+                      a.setNome(rs.getString("nome"));               
+                      a.setEmail(rs.getString("email"));             
+                      a.setSenha(rs.getString("senha"));             
+                      a.setId(rs.getInt("id")); 
+                      if(a.getEmail().equals(email)) {
+                    	  return a;
+                      }
+                     
+                  }                                                  
+                                                                     
+              } catch (SQLException ex) {                            
+                  throw new RuntimeException(ex);                    
+              }                                                      
+                                                                     
+              return null;                                       
+          }  
 	       
 	       
 	       

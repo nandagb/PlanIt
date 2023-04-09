@@ -11,11 +11,23 @@ public class UsuarioRepo {
 	}
 	
 	public void addUsuario(Usuario usuario) {
-		usuarios.criarFuncionario(usuario);
+		if( usuarios.emailEmUso(usuario) ) {
+			System.out.println("Este email já foi cadastrado!");
+		}
+		else if (usuarios.criarFuncionario(usuario) == false) {
+			System.out.println("Este usuário já existe!");
+		}
+		else {
+			System.out.println("Usuário criado com sucesso!");
+		}
 	}
 	
 	public Usuario getUsuarioById(int id) {
 		return usuarios.obterUsuario(id);
+	}
+	
+	public Usuario getUsuarioByEmail(String email) {
+		return usuarios.obterUsuarioEmail(email);
 	}
 	
 	public void updateUsuario(Usuario updateUsuario) {

@@ -14,6 +14,10 @@ public class UsuarioController {
     public Usuario getUserById(int id) {
         return usuarioRepo.getUsuarioById(id);
     }
+    
+    public Usuario getUserByEmail(String email) {
+        return usuarioRepo.getUsuarioByEmail(email);
+    }
 
     public void updateUser(Usuario updatedUser) {
     	usuarioRepo.updateUsuario(updatedUser);
@@ -26,4 +30,6 @@ public class UsuarioController {
     public void show() {
     	usuarioRepo.showUsuarios();
     }
+    
+    
 }
