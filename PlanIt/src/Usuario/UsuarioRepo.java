@@ -2,11 +2,12 @@ package Usuario;
 import java.util.*;
 public class UsuarioRepo {
 	private UsuarioDAO usuarios;
-	private List<Usuario> listaUsuario = usuarios.obterTodosUsuarios();
+	private List<Usuario> listaUsuario;
 	
 	
 	public UsuarioRepo() {
 		usuarios = new UsuarioDAO();
+		listaUsuario = usuarios.obterTodosUsuarios();
 	}
 	
 	public void addUsuario(Usuario usuario) {

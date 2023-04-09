@@ -12,15 +12,24 @@ public class Main {
 		Scanner scanner = new Scanner(System.in);
 		
 		System.out.println("Crie um usuário");
+		Usuario usuario = new Usuario();
+		
+		System.out.println("Insira o nome: ");
+		String nome = scanner.nextLine();
+		usuario.setNome(nome);
 		
 		System.out.println("Insira o email: ");
 		String email = scanner.nextLine();
+		usuario.setEmail(email);
 		
 		System.out.println("Insira sua senha: ");
 		String senha = scanner.nextLine();
+		usuario.setSenha(senha);
 		
-		//criando usuario
-		Usuario usuario = new Usuario();
+		System.out.println("Insira seu id: ");
+		int id = scanner.nextInt();
+		usuario.setId(id);
+		
 		
 		//adiciona o usuario ao banco
 		UsuarioController controlador = new UsuarioController();

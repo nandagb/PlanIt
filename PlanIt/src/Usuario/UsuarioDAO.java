@@ -1,4 +1,4 @@
-package Usuario;d
+package Usuario;
 
 import db.DBConnection;
 import db.DBDriver;
@@ -15,7 +15,7 @@ public class UsuarioDAO {
 
 	    public UsuarioDAO() {
 	        if (con == null) {
-	            con = new DBConnection().getConnection(DBDriver.MYSQL, "planit", "root", "");
+	            con = new DBConnection().getConnection(DBDriver.MYSQL, "planit", "root", "V3r3@dor3sMYSQL");
 	        }
 	    }
 	    
@@ -44,7 +44,7 @@ public class UsuarioDAO {
 	    
 	    public boolean existe(Usuario usuario) {
 	        try {
-	            String existe = "SELECT id FROM Usuario WHERE id = ?";
+	            String existe = "SELECT id FROM usuario WHERE id = ?";
 	            PreparedStatement pst = con.prepareStatement(existe);
 	            pst.setInt(1, usuario.getId());
 	            ResultSet res = pst.executeQuery();
@@ -60,7 +60,7 @@ public class UsuarioDAO {
 	    }
 	    
 	       public ArrayList<Usuario> obterTodosUsuarios() {          
-	               String todos = "SELECT * FROM Usuario";           
+	               String todos = "SELECT * FROM usuario";           
 	               PreparedStatement ps;                             
 	               ArrayList<Usuario> usuarios = new ArrayList<>();  
 	               try {                                             
@@ -85,7 +85,7 @@ public class UsuarioDAO {
 	       
 	       
 	      public Usuario obterUsuario(int id) {               
-	              String usuario = "SELECT * FROM Usuario";        
+	              String usuario = "SELECT * FROM usuario";        
 
 	              PreparedStatement ps;                                  
 	                
