@@ -8,12 +8,14 @@ public class CriarProjeto implements Menu {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Insira o Nome do Projeto:");
 		String opcao = scanner.nextLine();
-		System.out.println(opcao);
+		Projeto projeto = new Projeto(0, opcao);
+		receberEntrada(opcao, projeto);
 	}
 	
 	@Override
 	public void receberEntrada(String opcao, Projeto projeto) {
-		// TODO Auto-generated method stub
+		projeto.setNome(opcao);
+		System.out.println("Projeto " + opcao + " criado com sucesso!");
 		
 	}
 
