@@ -39,6 +39,10 @@ public class Projeto {
 		return andamento;
 	}
 	
+	public int getId() {
+		return id;
+	}
+	
 	public void setAndamento(float andamento) {
 		this.andamento = andamento;
 	}

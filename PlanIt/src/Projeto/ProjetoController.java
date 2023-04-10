@@ -1,9 +1,20 @@
 package Projeto;
 import java.util.Arrays;
+import java.util.*;
 
 import Usuario.Usuario;
 
 public class ProjetoController {
+	
+	private ProjetoDAO projetos;
+	private List<Projeto> listaProjetos;
+	
+	public ProjetoController() {
+		projetos = new ProjetoDAO();
+		listaProjetos = projetos.obterTodosProjetos();
+	}
+	
+	
 	
 //	ADICIONA MEMBRO A EQUIPE
 	public void addMembro(Projeto projeto, Usuario usuario) {
