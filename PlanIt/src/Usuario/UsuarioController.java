@@ -1,25 +1,54 @@
 package Usuario;
 
+import java.util.List;
+
 public class UsuarioController {
-    private UsuarioRepo usuarioRepo;
+    private UsuarioDAO usuarios;
+	private List<Usuario> listaUsuario;
 
     public UsuarioController() {
-    	usuarioRepo = new UsuarioRepo();
+    	usuarios = new UsuarioDAO();
+		listaUsuario = usuarios.obterTodosUsuarios();
     }
 
     public void createUser(Usuario usuario) {
-    	usuarioRepo.addUsuario(usuario);
+    	if( usuarios.emailEmUso(usuario) ) {
+			System.out.println("Este email já foi cadastrado!");
+		}
+		else if (usuarios.criarFuncionario(usuario) == false) {
+			System.out.println("Este usuário já existe!");
+		}
+		else {
+			System.out.println("Usuário criado com sucesso!");
+		}
     }
 
     public Usuario getUserById(int id) {
-        return usuarioRepo.getUsuarioById(id);
+    	return usuarios.obterUsuario(id);
+    }
+    
+    public Usuario getUserByEmail(String email) {
+    	return usuarios.obterUsuarioEmail(email);
     }
 
     public void updateUser(Usuario updatedUser) {
-    	usuarioRepo.updateUsuario(updatedUser);
+    	usuarios.updateUsuario(updatedUser);
     }
 
-    public void deleteUser(int id) {
-    	usuarioRepo.deleteUsuario(id);
+    public void deleteUser(Usuario usuario) {
+    	if(usuarios.deleteUsuario(usuario)) {
+			System.out.println(" Usuário deletado com sucesso!");
+		}
+		else {
+			System.out.println("Não foi possível deletar o usuário!");
+		}
     }
+    
+    public void show() {
+    	for( Usuario usuario : listaUsuario) {
+			usuario.printUsuario();
+		}
+    }
+    
+    
 }

@@ -1,0 +1,59 @@
+package Usuario;
+
+import db.DBConnection;
+import db.DBDriver;
+import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class UsuarioDAO {
+	 Connection con;
+
+	    public UsuarioDAO() {
+	        if (con == null) {
+	            con = new DBConnection().getConnection(DBDriver.MYSQL, "planit", "root", "");
+	        }
+	    }
+	    
+	    public boolean CriarFuncionario(Usuario usuario) {
+	        if(existe(usuario)){
+	            return false;
+	        } else {
+	            String nf = "INSERT INTO usuario (email, senha, id) VALUES (?,?,?)";
+	            PreparedStatement pst;
+	            try {
+	                pst = con.prepareStatement(nf);
+	                pst.setString(1, usuario.getEmail());
+	                pst.setString(2, usuario.getSenha());
+	                int res = pst.executeUpdate();
+	                if (res == 1) {
+	                    return true;
+	                }
+	            } catch (SQLException e) {
+	                throw new RuntimeException(e);
+	            }
+	        }
+	        return false;
+	    }
+	    
+	    public boolean existe(Usuario usuario) {
+	        try {
+	            String existe = "SELECT codFuncionario FROM funcionario WHERE codFuncionario = ?";
+	            PreparedStatement pst = con.prepareStatement(existe);
+	            pst.setInt(1, funcionario.getCodFuncionario());
+	            ResultSet res = pst.executeQuery();
+	            if (res.next()) {
+	                if (res.getLong("codFuncionario") == funcionario.getCodFuncionario()) {
+	                    return true;
+	                }
+	            }
+	        } catch (SQLException ex) {
+	            throw new RuntimeException(ex);
+	        }
+	        return false;
+	    }
+}

@@ -1,0 +1,10 @@
+import java.util.*;
+package Main;
+
+public class Main {
+	public void main() {
+		System.out.println("Crie um usuário");
+		System.out.println("Insira o email: ");
+		System.out.println("Insira sua senha: ");
+	}
+}
