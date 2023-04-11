@@ -14,7 +14,7 @@ public class MenuPrincipal implements Menu {
 	public void exibirConteudo() {
 		Scanner scanner = new Scanner(System.in);
 		Menu menu;
-		System.out.println("Escolha uma opção \n\n [1] Criar Novo Projeto \n [2] Editar Projeto \n [3] Excluir Projeto");
+		System.out.println("Escolha uma opção \n\n [1] Criar Novo Projeto \n [2] Editar Projeto \n [3] Excluir Projeto \n [4] Listar Projetos");
 		int opcao = scanner.nextInt();
 		Usuario[] equipe;
 		Projeto projeto = new Projeto(1, "Projeto");
@@ -41,6 +41,10 @@ public class MenuPrincipal implements Menu {
 		}
 		else if(opcao == 3) {
 			menu = new ExcluirProjeto();
+			menu.exibirConteudo();
+		}
+		else if(opcao == 4) {			
+			menu = new ExibirProjetos();
 			menu.exibirConteudo();
 		}
 		

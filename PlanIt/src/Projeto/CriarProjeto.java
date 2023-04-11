@@ -14,7 +14,9 @@ public class CriarProjeto implements Menu {
 	
 	@Override
 	public void receberEntrada(String opcao, Projeto projeto) {
+		ProjetoController controlador = new ProjetoController();
 		projeto.setNome(opcao);
+		controlador.addProjeto(0, opcao);
 		System.out.println("Projeto " + opcao + " criado com sucesso!");
 		
 	}

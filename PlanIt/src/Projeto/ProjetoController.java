@@ -1,5 +1,4 @@
 package Projeto;
-import java.util.Arrays;
 import java.util.*;
 
 import Usuario.Usuario;
@@ -43,5 +42,31 @@ public class ProjetoController {
 				newEquipe[j++] = projeto.getEquipe()[i];
 			}
 		}
+	}
+	
+//	ADICIONAR PROJETO
+	public void addProjeto(int id, String nome) {
+		Projeto projeto = new Projeto(id, nome);
+		projetos.criarProjeto(projeto);
+	}
+	
+//	EXCLUIR PROJETOS
+	public void excluirProjeto(Projeto projeto) {
+			projetos.deleteProjeto(projeto);
+	}
+	
+//	LISTAR PROJETOS
+	public void listarProjetos() {		
+		ArrayList<Projeto> listaProjetos = projetos.obterTodosProjetos();
+		for(int i = 0; i < listaProjetos.size(); i++){
+			System.out.println("Projeto: " + listaProjetos.get(i).getNome() + " - " + listaProjetos.get(i).getId());
+		}
+	}
+	
+//	PESQUISAR PROJETO
+	public Projeto pesquisarProjeto(int id) {
+		Projeto projeto = projetos.obterProjeto(id);
+		return projeto;
+		
 	}
 }

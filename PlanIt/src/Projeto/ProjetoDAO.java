@@ -15,7 +15,7 @@ public class ProjetoDAO {
 
     public ProjetoDAO() {
         if (con == null) {
-            con = new DBConnection().getConnection(DBDriver.MYSQL, "planit", "root", "");
+            con = new DBConnection().getConnection(DBDriver.MYSQL, "planit", "root", "V3r3@dor3sMYSQL");
         }
     }
     
@@ -23,13 +23,14 @@ public class ProjetoDAO {
         if(existe(projeto)){
             return false;
         } else {
-            String nf = "INSERT INTO usuario (nome, andamento, id) VALUES (?,?,?)";
+            String nf = "INSERT INTO projeto (id, nome, andamento) VALUES (?,?,?)";
             PreparedStatement pst;
             try {
                 pst = con.prepareStatement(nf);
-                pst.setString(1, projeto.getNome());
-                pst.setFloat(2, projeto.getAndamento());
-                pst.setInt(3, projeto.getId());
+                pst.setInt(1, projeto.getId());
+                pst.setString(2, projeto.getNome());
+                pst.setFloat(3, projeto.getAndamento());
+                
                 int res = pst.executeUpdate();
                 if (res == 1) {
                     return true;
