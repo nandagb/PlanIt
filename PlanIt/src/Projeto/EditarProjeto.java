@@ -27,6 +27,13 @@ public class EditarProjeto implements Menu {
 			System.out.println("Informe um novo nome:");
 			String novoNome = scanner.nextLine();
 			Projeto novoProjeto = new Projeto(projeto.getId(), novoNome);
+			if(controlador.editarProjeto(novoProjeto)) {
+				System.out.println("Projeto: " + projeto.getId() + " foi editado com sucesso!");
+			}	
+			else {
+				System.out.println("Não foi possível editar o projeto!");
+			}
+			
 		}
 		else {
 			System.out.println("Não foi inserido uma opção válida");

@@ -115,7 +115,7 @@ public class ProjetoDAO {
               pst = con.prepareStatement(string);
               pst.setString(1, projeto.getNome());
               pst.setFloat(2, projeto.getAndamento());
-              pst.setInt(4, projeto.getId());
+              pst.setInt(3, projeto.getId());
               int res = pst.executeUpdate();
               if(res == 1){
                   return true;

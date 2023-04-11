@@ -69,4 +69,9 @@ public class ProjetoController {
 		return projeto;
 		
 	}
+	
+	//EDITAR PROJETO
+	public boolean editarProjeto(Projeto projeto) {
+		return projetos.updateProjeto(projeto);
+	}
 }
