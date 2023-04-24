@@ -2,6 +2,8 @@ package com.pds.planit;
 
 import com.pds.planit.dao.UsuarioDAO;
 import com.pds.planit.entity.Usuario;
+import com.pds.planit.view.MenuTarefa;
+import com.pds.planit.view.MenuUsuario;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -30,4 +30,9 @@ public class CriarUsuario implements MenuUsuario{
         controller.criarUsuario(usuario);
     }
 
+    @Override
+    public void receberEntrada(int opcao) {
+
+    }
+
 }

@@ -22,4 +22,9 @@ public class CriarProjeto implements MenuProjeto {
         controller.criarProjeto(projeto);
 
     }
+
+    @Override
+    public void receberEntrada(int opcao) {
+
+    }
 }
