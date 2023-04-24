@@ -9,4 +9,12 @@ public class ProjetoController {
     public void criarProjeto(Projeto projeto){
         projetoDAO.save(projeto);
     }
+
+    public Projeto procurarProjetoNome(String nome){
+        return projetoDAO.findByName(nome);
+    }
+
+    public Projeto procurarProjetoId(int id){
+        return projetoDAO.findByID(id);
+    }
 }
