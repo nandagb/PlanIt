@@ -20,4 +20,14 @@ public class ProjetoDAOImpl implements ProjetoDAO{
         entityManager.persist(projeto);
 
     }
+
+    @Override
+    public Projeto findById(int id) {
+        return entityManager.find(Projeto.class, id);
+    }
+
+    @Override
+    public Projeto findByName(String nome) {
+        return entityManager.find(Projeto.class, nome);
+    }
 }

@@ -67,11 +67,11 @@ public class Usuario {
 
     //define print method
     public void printUsuario() {
-        String usuario = "Usuario{" +
+        String usuario = "Usuario{ " +
                 "id=" + this.id +
                 ", nome='" + this.nome + '\'' +
                 ", email='" + this.email + '\'' +
-                '}';
+                " }";
         System.out.println(usuario);
     }
 }

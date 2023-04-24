@@ -1,5 +1,6 @@
 package com.pds.planit.dao;
 
+import com.pds.planit.entity.Projeto;
 import com.pds.planit.entity.Usuario;
 import jakarta.persistence.EntityManager;
 
@@ -22,5 +23,15 @@ public class UsuarioDAOImpl implements UsuarioDAO{
     public void save(Usuario usuario) {
         entityManager.persist(usuario);
 
+    }
+
+    @Override
+    public Usuario findById(int id) {
+        return entityManager.find(Usuario.class, id);
+    }
+
+    @Override
+    public Usuario findByEmail(String email) {
+        return entityManager.find(Usuario.class, email);
     }
 }
