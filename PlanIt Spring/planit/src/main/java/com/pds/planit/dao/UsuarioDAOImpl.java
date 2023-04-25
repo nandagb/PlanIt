@@ -4,9 +4,12 @@ import com.pds.planit.entity.Projeto;
 import com.pds.planit.entity.Usuario;
 import jakarta.persistence.EntityManager;
 
+import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Repository
 public class UsuarioDAOImpl implements UsuarioDAO{
@@ -31,7 +34,14 @@ public class UsuarioDAOImpl implements UsuarioDAO{
     }
 
     @Override
+    public List<Usuario> findAll() {
+        TypedQuery<Usuario> query = entityManager.createQuery("FROM usuario", Usuario.class);
+        return query.getResultList();
+    }
+
+
+    @Override
     public Usuario findByEmail(String email) {
-        return entityManager.find(Usuario.class, email);
+        return null;
     }
 }

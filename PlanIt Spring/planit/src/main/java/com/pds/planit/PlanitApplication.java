@@ -27,8 +27,12 @@ public class PlanitApplication {
 
 	private void lerUsuario(UsuarioDAO usuarioDAO) {
 		System.out.println("Procurando usuario com id: 1");
-		Usuario usuario = usuarioDAO.findById(1);
-		usuario.printUsuario();
+		Usuario usuario1 = usuarioDAO.findById(1);
+		usuario1.printUsuario();
+
+		System.out.println("Procurando usuario com email: fernanda.goncalves@buzzmonitor.com.br");
+		Usuario usuario2 = usuarioDAO.findByEmail("fernanda.goncalves@buzzmonitor.com.br");
+		usuario2.printUsuario();
 
 	}
 

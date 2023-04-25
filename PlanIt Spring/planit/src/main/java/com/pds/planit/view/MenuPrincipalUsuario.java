@@ -18,7 +18,6 @@ public class MenuPrincipalUsuario implements MenuUsuario{
 
     @Override
     public void receberEntrada(int opcao) {
-        Scanner scanner = new Scanner(System.in);
         if(opcao == 1) {
             menu = new CriarUsuario();
             menu.exibirConteudo();
