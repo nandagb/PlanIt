@@ -1,10 +1,12 @@
 package com.pds.planit.dao;
 
-import com.pds.planit.entity.Projeto;
 import com.pds.planit.entity.Tarefa;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 public class TarefaDAOImpl implements TarefaDAO{
 
@@ -30,5 +32,11 @@ public class TarefaDAOImpl implements TarefaDAO{
     @Override
     public Tarefa findByName(String nome) {
         return entityManager.find(Tarefa.class, nome);
+    }
+
+    @Override
+    public List<Tarefa> findAll() {
+        TypedQuery<Tarefa> query = entityManager.createQuery("FROM tarefa", Tarefa.class);
+        return query.getResultList();
     }
 }
