@@ -14,4 +14,6 @@ public interface TarefaDAO {
     Tarefa findByName(String name);
 
     List<Tarefa> findAll();
+
+    void update(Tarefa tarefa);
 }

@@ -35,13 +35,23 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 
     @Override
     public List<Usuario> findAll() {
-        TypedQuery<Usuario> query = entityManager.createQuery("FROM usuario", Usuario.class);
+        TypedQuery<Usuario> query = entityManager.createQuery("FROM Usuario", Usuario.class);
         return query.getResultList();
     }
 
 
     @Override
-    public Usuario findByEmail(String email) {
-        return null;
+    public List<Usuario> findByEmail(String email) {
+
+        TypedQuery<Usuario> query = entityManager.createQuery("FROM Usuario WHERE email=:dado", Usuario.class);
+        query.setParameter("dado", email);
+
+        return query.getResultList();
+    }
+
+    @Override
+    @Transactional
+    public void update(Usuario usuario) {
+        entityManager.merge(usuario);
     }
 }

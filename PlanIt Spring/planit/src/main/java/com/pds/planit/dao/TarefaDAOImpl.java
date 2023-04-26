@@ -36,7 +36,12 @@ public class TarefaDAOImpl implements TarefaDAO{
 
     @Override
     public List<Tarefa> findAll() {
-        TypedQuery<Tarefa> query = entityManager.createQuery("FROM tarefa", Tarefa.class);
+        TypedQuery<Tarefa> query = entityManager.createQuery("FROM Tarefa", Tarefa.class);
         return query.getResultList();
+    }
+
+    @Override
+    public void update(Tarefa tarefa) {
+        entityManager.merge(tarefa);
     }
 }

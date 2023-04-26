@@ -13,4 +13,6 @@ public interface ProjetoDAO {
     Projeto findByName(String name);
 
     List<Projeto> findAll();
+
+    void update(Projeto projeto);
 }

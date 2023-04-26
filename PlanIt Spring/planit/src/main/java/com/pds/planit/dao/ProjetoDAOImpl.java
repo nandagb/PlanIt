@@ -36,7 +36,12 @@ public class ProjetoDAOImpl implements ProjetoDAO{
 
     @Override
     public List<Projeto> findAll() {
-        TypedQuery<Projeto> query = entityManager.createQuery("FROM projeto", Projeto.class);
+        TypedQuery<Projeto> query = entityManager.createQuery("FROM Projeto", Projeto.class);
         return query.getResultList();
+    }
+
+    @Override
+    public void update(Projeto projeto) {
+        entityManager.merge(projeto);
     }
 }
