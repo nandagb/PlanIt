@@ -41,7 +41,15 @@ public class TarefaDAOImpl implements TarefaDAO{
     }
 
     @Override
+    @Transactional
     public void update(Tarefa tarefa) {
         entityManager.merge(tarefa);
+    }
+
+    @Override
+    public void delete(int id) {
+        Tarefa tarefa = entityManager.find(Tarefa.class, id);
+
+        entityManager.remove(tarefa);
     }
 }

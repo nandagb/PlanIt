@@ -15,4 +15,6 @@ public interface ProjetoDAO {
     List<Projeto> findAll();
 
     void update(Projeto projeto);
+
+    void delelete(int id);
 }

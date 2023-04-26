@@ -16,4 +16,6 @@ public interface TarefaDAO {
     List<Tarefa> findAll();
 
     void update(Tarefa tarefa);
+
+    void delete(int id);
 }

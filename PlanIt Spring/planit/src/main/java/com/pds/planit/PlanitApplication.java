@@ -25,8 +25,30 @@ public class PlanitApplication {
 
 			//lerUsuario( usuarioDAO );
 
-			atualizarUsuario( usuarioDAO );
+			//atualizarUsuario( usuarioDAO );
+
+			//deleterUsuario( usuarioDAO);
 		};
+	}
+
+	private void deleterUsuario(UsuarioDAO usuarioDAO) {
+
+		System.out.println("imprimindo todos os usuários: ");
+		List<Usuario> usuarios = usuarioDAO.findAll();
+		for(Usuario usuario : usuarios){
+			usuario.printUsuario();
+		}
+
+		System.out.println("Deletando usuario com id = 92");
+
+		usuarioDAO.delete(92);
+
+		System.out.println("imprimindo todos os usuários: ");
+		List<Usuario> usuarios2 = usuarioDAO.findAll();
+		for(Usuario usuario : usuarios2){
+			usuario.printUsuario();
+		}
+
 	}
 
 	private void atualizarUsuario(UsuarioDAO usuarioDAO) {

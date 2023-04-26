@@ -41,7 +41,15 @@ public class ProjetoDAOImpl implements ProjetoDAO{
     }
 
     @Override
+    @Transactional
     public void update(Projeto projeto) {
         entityManager.merge(projeto);
+    }
+
+    @Override
+    public void delelete(int id) {
+        Projeto projeto = entityManager.find(Projeto.class, id);
+
+        entityManager.remove(projeto);
     }
 }

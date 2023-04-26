@@ -54,4 +54,12 @@ public class UsuarioDAOImpl implements UsuarioDAO{
     public void update(Usuario usuario) {
         entityManager.merge(usuario);
     }
+
+    @Override
+    @Transactional
+    public void delete(int id) {
+        Usuario usuario = entityManager.find(Usuario.class, id);
+
+        entityManager.remove(usuario);
+    }
 }

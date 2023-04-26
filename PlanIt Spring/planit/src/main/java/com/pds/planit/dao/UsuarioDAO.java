@@ -16,4 +16,6 @@ public interface UsuarioDAO {
     List<Usuario> findByEmail(String email);
     
     void update(Usuario usuario);
+
+    void delete(int id);
 }
