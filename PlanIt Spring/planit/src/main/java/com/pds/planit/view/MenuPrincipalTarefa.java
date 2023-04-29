@@ -11,4 +11,8 @@ public class MenuPrincipalTarefa implements MenuTarefa{
     public void receberEntrada(String nome, String descricao) {
 
     }
+
+    public void receberEntrada(int opcao) {
+
+    }
 }

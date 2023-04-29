@@ -26,4 +26,6 @@ public class CriarTarefa implements MenuTarefa{
         controller.criarTarefa(tarefa);
     }
 
+    public void receberEntrada(int opcao){}
+
 }
