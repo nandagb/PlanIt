@@ -62,4 +62,8 @@ public class Projeto {
     public Usuario[] getEquipe() {
         return equipe;
     }
+
+    public void setEquipe(Usuario[] equipe) {
+        this.equipe = equipe;
+    }
 }
