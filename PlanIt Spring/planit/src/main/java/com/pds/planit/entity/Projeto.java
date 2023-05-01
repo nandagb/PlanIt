@@ -18,6 +18,9 @@ public class Projeto {
     @Column(name="andamento")
     private float andamento;
 
+    @Column(name="equipe")
+    private Usuario[] equipe;
+
     //define constructor
     public Projeto() {
         this.andamento = 0;
@@ -26,6 +29,7 @@ public class Projeto {
     public Projeto(String nome) {
         this.nome = nome;
         this.andamento = 0;
+        this.equipe = new Usuario[1];
     }
 
     //define getters and setters
@@ -53,5 +57,13 @@ public class Projeto {
 
     public String getNome() {
         return nome;
+    }
+
+    public Usuario[] getEquipe() {
+        return equipe;
+    }
+
+    public void setEquipe(Usuario[] equipe) {
+        this.equipe = equipe;
     }
 }

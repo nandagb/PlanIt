@@ -13,7 +13,7 @@ public class MenuPrincipalTarefa implements MenuTarefa{
     public void receberEntrada(String nome, String descricao) {
 
     }
-
+    
     @Override
     public void receberEntrada(int opcao) {
         if(opcao == 1) {
