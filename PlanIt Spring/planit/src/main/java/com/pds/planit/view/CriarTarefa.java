@@ -25,7 +25,10 @@ public class CriarTarefa implements MenuTarefa{
         Tarefa tarefa = new Tarefa(nome, descricao);
         controller.criarTarefa(tarefa);
     }
+    
+    @Override
+    public void receberEntrada(int opcao) {
 
-    public void receberEntrada(int opcao){}
+    }
 
 }

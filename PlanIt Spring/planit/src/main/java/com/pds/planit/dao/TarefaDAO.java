@@ -1,7 +1,9 @@
 package com.pds.planit.dao;
 
-import com.pds.planit.entity.Projeto;
 import com.pds.planit.entity.Tarefa;
+
+
+import java.util.List;
 
 public interface TarefaDAO {
 
@@ -10,4 +12,10 @@ public interface TarefaDAO {
     Tarefa findById(int id);
 
     Tarefa findByName(String name);
+
+    List<Tarefa> findAll();
+
+    void update(Tarefa tarefa);
+
+    void delete(int id);
 }

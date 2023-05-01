@@ -19,7 +19,7 @@ public class MenuPrincipalProjeto implements MenuProjeto{
 
     @Override
     public void receberEntrada(int opcao) {
-        Scanner scanner = new Scanner(System.in);
+
         if(opcao == 1) {
             menu = new CriarProjeto();
             menu.exibirConteudo();
