@@ -26,6 +26,10 @@ public class Tarefa {
     @Column(name="prazo")
     private Date prazo;
 
+    @ManyToOne
+    @JoinColumn(name="project_id")
+    private Projeto projeto;
+
 
     //define constructors
     public Tarefa() {
@@ -59,6 +63,26 @@ public class Tarefa {
 
     public String getDescricao() {
         return this.descricao;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public Date getPrazo() {
+        return prazo;
+    }
+
+    public Projeto getProjeto() {
+        return projeto;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setPrazo(Date prazo) {
+        this.prazo = prazo;
     }
 
     //define print method
