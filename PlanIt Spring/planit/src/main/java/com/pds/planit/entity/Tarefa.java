@@ -2,6 +2,8 @@ package com.pds.planit.entity;
 
 import jakarta.persistence.*;
 
+import java.util.Date;
+
 @Entity
 @Table(name="tarefa")
 public class Tarefa {
@@ -17,6 +19,12 @@ public class Tarefa {
 
     @Column(name="descricao")
     private String descricao;
+
+    @Column(name="status")
+    private String status;
+
+    @Column(name="prazo")
+    private Date prazo;
 
 
     //define constructors
