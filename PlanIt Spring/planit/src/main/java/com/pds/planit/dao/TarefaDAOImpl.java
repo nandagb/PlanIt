@@ -22,6 +22,10 @@ public class TarefaDAOImpl implements TarefaDAO{
 
     }
 
+    public void edit(Tarefa tarefa){
+        entityManager.merge(tarefa);
+    }
+
     @Override
     public Tarefa findById(int id) {
         return entityManager.find(Tarefa.class, id);
