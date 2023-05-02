@@ -21,6 +21,7 @@ public class PlanitApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(UsuarioDAO usuarioDAO){
 		return runner -> {
+			System.out.println("Hello World");
 			//criarUsuario( usuarioDAO );
 
 			//lerUsuario( usuarioDAO );

@@ -1,6 +1,7 @@
 package com.pds.planit.entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.ManyToAny;
 
 @Entity
 @Table(name="projeto")
@@ -19,6 +20,7 @@ public class Projeto {
     private float andamento;
 
     @Column(name="equipe")
+    @OneToMany
     private Usuario[] equipe;
 
     //define constructor
