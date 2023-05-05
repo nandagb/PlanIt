@@ -1,21 +1,21 @@
-package Usuario;
+package dao;
 
+import entity.Usuario;
 import db.DBConnection;
 import db.DBDriver;
-import java.io.Serializable;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class UsuarioDAO {
 	 Connection con;
 
 	    public UsuarioDAO() {
 	        if (con == null) {
-	            con = new DBConnection().getConnection(DBDriver.MYSQL, "planit", "root", "");
+	            con = new DBConnection().getConnection(DBDriver.MYSQL, "planit", "ezequiel", "");
 	        }
 	    }
 	    

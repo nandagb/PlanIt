@@ -1,6 +1,6 @@
 import java.util.*;
 
-import Usuario.Usuario;
+import entity.Usuario;
 package Main;
 
 public class Main {

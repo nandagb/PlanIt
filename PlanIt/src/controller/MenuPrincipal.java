@@ -1,8 +1,10 @@
-package Projeto;
+package controller;
 
 import java.util.Scanner;
 
-import Usuario.Usuario;
+import view.*;
+import entity.Projeto;
+import entity.Usuario;
 
 public class MenuPrincipal implements Menu {
 	

@@ -3,7 +3,8 @@ package Main;
 
 import java.util.*;
 
-import Usuario.*;
+import controller.UsuarioController;
+import entity.Usuario;
 
 public class Main {
 	/**

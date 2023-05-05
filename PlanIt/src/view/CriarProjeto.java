@@ -1,4 +1,7 @@
-package Projeto;
+package view;
+
+import controller.ProjetoController;
+import entity.Projeto;
 
 import java.util.Scanner;
 

@@ -1,10 +1,11 @@
-package Projeto;
+package view;
 
-import java.util.Scanner;
+import controller.ProjetoController;
+import entity.Projeto;
 
-public class ExibirProjetos implements Menu{
+public class ExibirProjetos implements Menu {
 	public void exibirConteudo() {		
-		ProjetoController controlador = new ProjetoController();			
+		ProjetoController controlador = new ProjetoController();
 		controlador.listarProjetos();
 	}
 

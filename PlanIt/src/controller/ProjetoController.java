@@ -1,7 +1,9 @@
-package Projeto;
+package controller;
 import java.util.*;
 
-import Usuario.Usuario;
+import entity.Projeto;
+import dao.ProjetoDAO;
+import entity.Usuario;
 
 public class ProjetoController {
 	

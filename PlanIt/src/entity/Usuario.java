@@ -1,4 +1,4 @@
-package Usuario;
+package entity;
 import java.util.*;
 public class Usuario {
 	private int id;

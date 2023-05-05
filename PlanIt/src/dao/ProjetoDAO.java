@@ -1,14 +1,14 @@
-package Projeto;
+package dao;
 
 import db.DBConnection;
 import db.DBDriver;
-import java.io.Serializable;
+import entity.Projeto;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class ProjetoDAO {
 	Connection con;

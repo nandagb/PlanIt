@@ -1,11 +1,4 @@
-package Projeto;
-import Usuario.Usuario;
-import java.util.ArrayList;
-
-import java.lang.reflect.Array;
-import java.util.List;
-
-import Usuario.Usuario;
+package entity;
 
 public class Projeto {
 	private int id;

@@ -1,4 +1,7 @@
-package Usuario;
+package controller;
+
+import dao.UsuarioDAO;
+import entity.Usuario;
 
 import java.util.List;
 
