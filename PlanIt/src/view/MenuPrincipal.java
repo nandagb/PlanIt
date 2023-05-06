@@ -1,8 +1,7 @@
-package controller;
+package view;
 
 import java.util.Scanner;
 
-import view.*;
 import entity.Projeto;
 import entity.Usuario;
 
@@ -51,7 +50,7 @@ public class MenuPrincipal implements Menu {
 		}
 		
 	}
-	
+
 	public static void main(String args[]) {
 		Menu menu = new MenuPrincipal();
 		menu.exibirConteudo();

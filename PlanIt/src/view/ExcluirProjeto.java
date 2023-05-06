@@ -1,6 +1,5 @@
 package view;
 
-import controller.MenuPrincipal;
 import controller.ProjetoController;
 import entity.Projeto;
 
