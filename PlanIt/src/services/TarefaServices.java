@@ -24,4 +24,12 @@ public class TarefaServices {
         }
         return false;
     }
+
+//    CHECA SE O STATUS PASSADO É VÁLIDO
+    public boolean statusValido(Tarefa tarefa){
+        if(tarefa.getStatus() == "em_andamento" || tarefa.getStatus() == "finalizado" || tarefa.getStatus() == "atrasado"){
+            return true;
+        }
+        return false;
+    }
 }
