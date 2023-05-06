@@ -5,6 +5,7 @@ import db.DBDriver;
 import entity.Tarefa;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -92,14 +93,23 @@ public class TarefaDAOImpl{
         return tarefas;
     };
 
+    public void update(Tarefa tarefa) throws SQLException{
+        PreparedStatement statement = con.prepareStatement("UPDATE tarefa SET nome = ?, descricao = ?, status = ?, prazo = ? WHERE id = ?");
+        statement.setString(1, tarefa.getNome());
+        statement.setString(2, tarefa.getDescricao());
+        statement.setString(3, tarefa.getStatus());
+        statement.setDate(4,tarefa.getPrazo());
+        statement.setInt(5,tarefa.getId());
+        statement.executeUpdate();
+    };
+
     public static void main(String[] args){
-        Tarefa tarefa = new Tarefa(1);
+        LocalDate prazo = LocalDate.of(1923, 10, 3);
+        Date prazoSql = Date.valueOf(prazo);
+        Tarefa tarefa = new Tarefa(4, "Tarefa 4 teste 1234", "Teste", "testeeee", prazoSql, 1);
         TarefaDAOImpl dao = new TarefaDAOImpl();
         try{
-            for (Tarefa tarefaTeste:
-                 dao.findAllonProject(1)) {
-                    System.out.println(tarefaTeste.nome);
-            }
+            dao.update(tarefa);
         }catch (SQLException e){
             System.out.println(e);
         }
