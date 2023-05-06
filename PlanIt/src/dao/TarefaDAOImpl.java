@@ -34,9 +34,8 @@ public class TarefaDAOImpl{
             statement.setString(3, tarefa.getDescricao());
             statement.setBoolean(4, tarefa.getStatus());
             statement.setDate(5,tarefa.getPrazo());
-            statement.setInt(6,1);
+            statement.setInt(6,tarefa.getProject_id());
             statement.executeUpdate();
-
         }
     }
 
