@@ -6,7 +6,7 @@ public class Tarefa {
     public int id;
     public String nome;
     public String descricao;
-    public boolean status;
+    public String status;
     public Date prazo;
     public int project_id;
 
@@ -18,8 +18,16 @@ public class Tarefa {
         return nome;
     }
 
-    public Tarefa(){
-        this.id = 1;
+    public Tarefa(int id){
+        this.id = id;
+    }
+    public Tarefa(int id, String nome, String descricao, String status, Date prazo, int project_id){
+        this.id = id;
+        this.nome = nome;
+        this.descricao = descricao;
+        this.status = status;
+        this.prazo = prazo;
+        this.project_id = project_id;
     }
 
     public void setNome(String nome) {
@@ -34,11 +42,11 @@ public class Tarefa {
         this.descricao = descricao;
     }
 
-    public boolean getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
