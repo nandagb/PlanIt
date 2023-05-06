@@ -5,6 +5,8 @@ import db.DBDriver;
 import entity.Tarefa;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TarefaDAOImpl{
     Connection con;
@@ -73,11 +75,31 @@ public class TarefaDAOImpl{
         return new Tarefa(-1);
     }
 
+    public List<Tarefa> findAllonProject(int project_id) throws SQLException{
+        PreparedStatement statement = con.prepareStatement("SELECT * FROM tarefa WHERE project_id = ?");
+        statement.setInt(1, project_id);
+        ResultSet resultSet = statement.executeQuery();
+        List<Tarefa> tarefas = new ArrayList<Tarefa>();
+        while(resultSet.next()){
+            int id = resultSet.getInt("id");
+            String nome = resultSet.getString("nome");
+            String descricao = resultSet.getString("descricao");
+            String status = resultSet.getString("status");
+            Date data = resultSet.getDate("prazo");
+            Tarefa newTarefa = new Tarefa(id, nome, descricao, status, data, project_id);
+            tarefas.add(newTarefa);
+        }
+        return tarefas;
+    };
+
     public static void main(String[] args){
         Tarefa tarefa = new Tarefa(1);
         TarefaDAOImpl dao = new TarefaDAOImpl();
         try{
-            System.out.println(dao.findById(2).getDescricao());
+            for (Tarefa tarefaTeste:
+                 dao.findAllonProject(1)) {
+                    System.out.println(tarefaTeste.nome);
+            }
         }catch (SQLException e){
             System.out.println(e);
         }

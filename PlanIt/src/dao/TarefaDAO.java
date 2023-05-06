@@ -15,7 +15,7 @@ public interface TarefaDAO {
 
     Tarefa findByName(String name, int project_id);
 
-    List<Tarefa> findAll();
+    List<Tarefa> findAllOnProject(int project_id);
 
     void update(Tarefa tarefa);
 
