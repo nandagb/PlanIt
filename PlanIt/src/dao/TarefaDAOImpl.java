@@ -57,11 +57,27 @@ public class TarefaDAOImpl{
         return new Tarefa(-1);
     }
 
+    public Tarefa findById(int id) throws SQLException{
+        PreparedStatement statement = con.prepareStatement("SELECT * FROM tarefa WHERE id = ?");
+        statement.setInt(1, id);
+        ResultSet resultSet = statement.executeQuery();
+        if(resultSet.next()){
+            String nome = resultSet.getString("nome");
+            String descricao = resultSet.getString("descricao");
+            String status = resultSet.getString("status");
+            Date data = resultSet.getDate("prazo");
+            int project_id = resultSet.getInt("project_id");
+            Tarefa newTarefa = new Tarefa(id, nome, descricao, status, data, project_id);
+            return newTarefa;
+        }
+        return new Tarefa(-1);
+    }
+
     public static void main(String[] args){
         Tarefa tarefa = new Tarefa(1);
         TarefaDAOImpl dao = new TarefaDAOImpl();
         try{
-            System.out.println(dao.findByName(tarefa.getNome(), tarefa.getProject_id()));
+            System.out.println(dao.findById(2).getDescricao());
         }catch (SQLException e){
             System.out.println(e);
         }
