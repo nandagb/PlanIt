@@ -108,18 +108,4 @@ public class TarefaDAOImpl{
         statement.setInt(1, id);
         statement.executeUpdate();
     };
-
-    public static void main(String[] args){
-        LocalDate prazo = LocalDate.of(1923, 10, 3);
-        Date prazoSql = Date.valueOf(prazo);
-        Tarefa tarefa = new Tarefa(4, "Tarefa 4 teste 1234", "Teste", "testeeee", prazoSql, 1);
-        TarefaDAOImpl dao = new TarefaDAOImpl();
-        try{
-            dao.delete(2);
-        }catch (SQLException e){
-            System.out.println(e);
-        }
-
-
-    }
 }
