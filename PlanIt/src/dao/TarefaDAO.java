@@ -13,7 +13,7 @@ public interface TarefaDAO {
 
     Tarefa findById(int id);
 
-    Tarefa findByName(String name);
+    Tarefa findByName(String name, int project_id);
 
     List<Tarefa> findAll();
 
