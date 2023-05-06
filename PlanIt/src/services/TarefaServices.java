@@ -19,7 +19,7 @@ public class TarefaServices {
 
 //    VERIFICA SE O NOME É VÁLIDO
     public boolean nomeValido(Tarefa tarefa){
-        if(tarefa.getNome().length() > o){
+        if(tarefa.getNome().length() > 0){
             return true;
         }
         return false;
