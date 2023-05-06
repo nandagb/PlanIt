@@ -103,13 +103,19 @@ public class TarefaDAOImpl{
         statement.executeUpdate();
     };
 
+    public void delete(int id) throws SQLException{
+        PreparedStatement statement = con.prepareStatement("DELETE FROM tarefa WHERE id = ?");
+        statement.setInt(1, id);
+        statement.executeUpdate();
+    };
+
     public static void main(String[] args){
         LocalDate prazo = LocalDate.of(1923, 10, 3);
         Date prazoSql = Date.valueOf(prazo);
         Tarefa tarefa = new Tarefa(4, "Tarefa 4 teste 1234", "Teste", "testeeee", prazoSql, 1);
         TarefaDAOImpl dao = new TarefaDAOImpl();
         try{
-            dao.update(tarefa);
+            dao.delete(2);
         }catch (SQLException e){
             System.out.println(e);
         }
