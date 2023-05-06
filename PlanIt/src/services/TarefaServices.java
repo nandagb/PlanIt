@@ -16,4 +16,12 @@ public class TarefaServices {
         }
         return false;
     }
+
+//    VERIFICA SE O NOME É VÁLIDO
+    public boolean nomeValido(Tarefa tarefa){
+        if(tarefa.getNome().length() > o){
+            return true;
+        }
+        return false;
+    }
 }
