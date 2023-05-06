@@ -18,6 +18,10 @@ public class Tarefa {
         return nome;
     }
 
+    public Tarefa(){
+        this.id = 1;
+    }
+
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -30,7 +34,7 @@ public class Tarefa {
         this.descricao = descricao;
     }
 
-    public boolean isStatus() {
+    public boolean getStatus() {
         return status;
     }
 
@@ -53,4 +57,5 @@ public class Tarefa {
     public void setProject_id(int project_id) {
         this.project_id = project_id;
     }
+
 }
