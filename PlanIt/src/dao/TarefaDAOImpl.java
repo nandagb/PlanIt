@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TarefaDAOImpl{
+public class TarefaDAOImpl implements TarefaDAO{
     Connection con;
 
     public TarefaDAOImpl(){
@@ -76,7 +76,7 @@ public class TarefaDAOImpl{
         return new Tarefa(-1);
     }
 
-    public List<Tarefa> findAllonProject(int project_id) throws SQLException{
+    public List<Tarefa> findAllOnProject(int project_id) throws SQLException{
         PreparedStatement statement = con.prepareStatement("SELECT * FROM tarefa WHERE project_id = ?");
         statement.setInt(1, project_id);
         ResultSet resultSet = statement.executeQuery();
