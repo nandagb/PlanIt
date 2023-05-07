@@ -8,7 +8,7 @@ import java.sql.Date;
 import java.sql.SQLException;
 
 public class TarefaServices {
-    public static boolean validaTarefa(Tarefa tarefa){
+    public static boolean validaTarefaCriacao(Tarefa tarefa){
         if(prazoValido(tarefa) && nomeValido(tarefa) && statusValido(tarefa)){
             try {
                 TarefaDAO dao = new TarefaDAOImpl();
@@ -18,6 +18,19 @@ public class TarefaServices {
             catch (SQLException e) {
                 System.out.println(e);
             }
+        }
+        return false;
+    }
+
+    public static boolean validaTarefaDelecao(Tarefa tarefa){
+        TarefaDAO dao = new TarefaDAOImpl();
+        try{
+            if(dao.existe(tarefa)){
+                dao.delete(tarefa.getId());
+                return true;
+            }
+        }catch(SQLException e){
+            System.out.println(e);
         }
         return false;
     }

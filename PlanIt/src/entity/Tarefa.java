@@ -79,7 +79,11 @@ public class Tarefa {
     }
 
     public static int getNextId(){
-        return ultimoId ++;
+        ultimoId ++;
+        return ultimoId;
     }
 
+    public static int getUltimoId() {
+        return ultimoId;
+    }
 }
