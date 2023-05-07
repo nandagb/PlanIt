@@ -4,12 +4,14 @@ import java.sql.Date;
 import java.time.LocalDate;
 
 public class Tarefa {
-    public int id;
-    public String nome;
-    public String descricao;
-    public String status;
-    public Date prazo;
-    public int project_id;
+    private int id;
+    private String nome;
+    private String descricao;
+    private String status;
+    private Date prazo;
+    private int project_id;
+
+    private static int ultimoId = 0;
 
     public int getId() {
         return id;
@@ -19,11 +21,20 @@ public class Tarefa {
         return nome;
     }
 
-    public Tarefa(int id){
-        this.id = id;
-    }
+    public Tarefa(){this.id = getNextId();}
+
+    public Tarefa(int id){ this.id = id; }
     public Tarefa(int id, String nome, String descricao, String status, Date prazo, int project_id){
         this.id = id;
+        this.nome = nome;
+        this.descricao = descricao;
+        this.status = status;
+        this.prazo = prazo;
+        this.project_id = project_id;
+    }
+
+    public Tarefa(String nome, String descricao, String status, Date prazo, int project_id){
+        this.id = getNextId();
         this.nome = nome;
         this.descricao = descricao;
         this.status = status;
@@ -65,6 +76,10 @@ public class Tarefa {
 
     public void setProject_id(int project_id) {
         this.project_id = project_id;
+    }
+
+    public static int getNextId(){
+        return ultimoId ++;
     }
 
 }
