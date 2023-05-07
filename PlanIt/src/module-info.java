@@ -7,5 +7,6 @@
  */
 module PlanIt {
 	requires java.sql;
-    requires org.junit.jupiter.api;
+    exports entity;
+    exports controller;
 }
