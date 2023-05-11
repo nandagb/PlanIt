@@ -1,6 +1,7 @@
 package controller;
 import java.util.*;
 
+import dao.TarefaDAOImpl;
 import entity.Projeto;
 import dao.ProjetoDAOImpl;
 import entity.Usuario;
@@ -47,9 +48,10 @@ public class ProjetoController {
 	}
 	
 //	ADICIONAR PROJETO
-	public void addProjeto(int id, String nome) {
+	public static void addProjeto(int id, String nome) {
 		Projeto projeto = new Projeto(id, nome);
-		projetos.save(projeto);
+		ProjetoDAOImpl dao = new ProjetoDAOImpl();
+		dao.save(projeto);
 	}
 	
 //	EXCLUIR PROJETOS

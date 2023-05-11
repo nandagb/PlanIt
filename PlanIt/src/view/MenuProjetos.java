@@ -23,6 +23,7 @@ public class MenuProjetos  implements Menu {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Informe o Nome Do Projeto: ");
         String nome = scanner.nextLine();
+        ProjetoController.addProjeto(Projeto.getNextId(), nome);
         System.out.println("Projeto \"" + nome + "\" Criado com Sucesso!");
     }
 
