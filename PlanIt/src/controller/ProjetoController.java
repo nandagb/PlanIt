@@ -5,6 +5,7 @@ import dao.TarefaDAOImpl;
 import entity.Projeto;
 import dao.ProjetoDAOImpl;
 import entity.Usuario;
+import services.ProjetoServices;
 
 public class ProjetoController {
 	
@@ -48,10 +49,9 @@ public class ProjetoController {
 	}
 	
 //	ADICIONAR PROJETO
-	public static void addProjeto(int id, String nome) {
+	public static void criaProjeto(int id, String nome) {
 		Projeto projeto = new Projeto(id, nome);
-		ProjetoDAOImpl dao = new ProjetoDAOImpl();
-		dao.save(projeto);
+		ProjetoServices.validaProjetoCriacao(projeto);
 	}
 	
 //	EXCLUIR PROJETOS
@@ -67,12 +67,19 @@ public class ProjetoController {
 		}
 	}
 	
-//	PESQUISAR PROJETO
-	public Projeto pesquisarProjeto(int id) {
-		Projeto projeto = projetos.getProjetoById(id);
+//	PESQUISAR PROJETO POR ID
+	public Projeto pesquisarProjetoId(int id) {
+		ProjetoDAOImpl dao = new ProjetoDAOImpl();
+		Projeto projeto = dao.getProjetoById(id);
 		return projeto;
-		
 	}
+
+	//PESQUISAR PROJETO POR NOME
+//	public Projeto pesquisarProjetoNome(String nome) {
+//		ProjetoDAOImpl dao = new ProjetoDAOImpl();
+//		Projeto projeto = dao.getProjetoByName(nome);
+//		return projeto;
+//	}
 	
 	//EDITAR PROJETO
 	public boolean editarProjeto(Projeto projeto) {
