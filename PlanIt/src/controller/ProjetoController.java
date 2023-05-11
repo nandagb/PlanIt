@@ -2,17 +2,17 @@ package controller;
 import java.util.*;
 
 import entity.Projeto;
-import dao.ProjetoDAO;
+import dao.ProjetoDAOImpl;
 import entity.Usuario;
 
 public class ProjetoController {
 	
-	private ProjetoDAO projetos;
+	private ProjetoDAOImpl projetos;
 	private List<Projeto> listaProjetos;
 	
 	public ProjetoController() {
-		projetos = new ProjetoDAO();
-		listaProjetos = projetos.obterTodosProjetos();
+		projetos = new ProjetoDAOImpl();
+		listaProjetos = projetos.getAllProjetos();
 	}
 	
 	
@@ -49,7 +49,7 @@ public class ProjetoController {
 //	ADICIONAR PROJETO
 	public void addProjeto(int id, String nome) {
 		Projeto projeto = new Projeto(id, nome);
-		projetos.criarProjeto(projeto);
+		projetos.save(projeto);
 	}
 	
 //	EXCLUIR PROJETOS
@@ -59,7 +59,7 @@ public class ProjetoController {
 	
 //	LISTAR PROJETOS
 	public void listarProjetos() {		
-		ArrayList<Projeto> listaProjetos = projetos.obterTodosProjetos();
+		ArrayList<Projeto> listaProjetos = projetos.getAllProjetos();
 		for(int i = 0; i < listaProjetos.size(); i++){
 			System.out.println("Projeto: " + listaProjetos.get(i).getNome() + " - " + listaProjetos.get(i).getId());
 		}
@@ -67,7 +67,7 @@ public class ProjetoController {
 	
 //	PESQUISAR PROJETO
 	public Projeto pesquisarProjeto(int id) {
-		Projeto projeto = projetos.obterProjeto(id);
+		Projeto projeto = projetos.getProjetoById(id);
 		return projeto;
 		
 	}
