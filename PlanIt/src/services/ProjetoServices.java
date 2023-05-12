@@ -40,6 +40,14 @@ public class ProjetoServices {
         return new Projeto(-1,"");
     }
 
+    public static boolean validaDelecaoProjeto(Projeto projeto){
+        ProjetoDAOImpl dao = new ProjetoDAOImpl();
+        if(dao.deleteProjeto(projeto) == true){
+            return true;
+        }
+        return false;
+    }
+
     private static boolean validaNome(String nome){
         if(nome.trim().length() > 0){
             return true;

@@ -54,8 +54,9 @@ public class ProjetoController {
 	}
 	
 //	EXCLUIR PROJETOS
-	public void excluirProjeto(Projeto projeto) {
-			projetos.deleteProjeto(projeto);
+	public static void excluirProjeto(Projeto projeto) {
+			ProjetoDAOImpl dao = new ProjetoDAOImpl();
+			dao.deleteProjeto(projeto);
 	}
 	
 //	LISTAR PROJETOS
