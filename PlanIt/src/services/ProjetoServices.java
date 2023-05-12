@@ -31,8 +31,24 @@ public class ProjetoServices {
         return new Projeto(-1,"");
     }
 
+    public static Projeto validaProjetoPesquisaId(int id){
+        if(validaId(id) == true){
+            ProjetoDAOImpl dao = new ProjetoDAOImpl();
+            Projeto projeto = dao.getProjetoById(id);
+            return projeto;
+        }
+        return new Projeto(-1,"");
+    }
+
     private static boolean validaNome(String nome){
         if(nome.trim().length() > 0){
+            return true;
+        }
+        return false;
+    }
+
+    private static boolean validaId(int id){
+        if(id > 0){
             return true;
         }
         return false;

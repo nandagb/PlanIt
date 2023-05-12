@@ -68,8 +68,7 @@ public class ProjetoController {
 	
 //	PESQUISAR PROJETO POR ID
 	public Projeto pesquisarProjetoId(int id) {
-		ProjetoDAOImpl dao = new ProjetoDAOImpl();
-		Projeto projeto = dao.getProjetoById(id);
+		Projeto projeto = ProjetoServices.validaProjetoPesquisaId(id);
 		return projeto;
 	}
 
@@ -80,7 +79,13 @@ public class ProjetoController {
 	}
 	
 	//EDITAR PROJETO
-	public boolean editarProjeto(Projeto projeto) {
-		return projetos.updateProjeto(projeto);
+	public static boolean editarProjeto(Projeto projeto) {
+		ProjetoServices.validaProjetoPesquisaId(projeto.getId());
+		if(projeto.getId() != -1){
+			ProjetoDAOImpl dao = new ProjetoDAOImpl();
+			dao.updateProjeto(projeto);
+			return true;
+		}
+		return false;
 	}
 }
