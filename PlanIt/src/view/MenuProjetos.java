@@ -31,7 +31,11 @@ public class MenuProjetos  implements Menu {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Informe o Nome Do Projeto: ");
         String nome = scanner.nextLine();
-        ProjetoController.criaProjeto(Projeto.getNextId(), nome);
-        System.out.println("Projeto \"" + nome + "\" Criado com Sucesso!");
+        Projeto projeto = ProjetoController.pesquisarProjetoNome(nome);
+        if(projeto.getId() != -1){
+            System.out.println(projeto.getNome() + ":\n ");
+            System.out.println(" [1] Editar Projeto \n [2]Ver Tarefas \n [3] Deletar Projeto \n [4] Voltar");
+        }
+        else System.out.println("Projeto não encontrado.");
     }
 }

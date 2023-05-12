@@ -3,11 +3,9 @@ package dao;
 import db.DBConnection;
 import db.DBDriver;
 import entity.Projeto;
+import entity.Tarefa;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class ProjetoDAOImpl implements ProjetoDAO {
@@ -104,11 +102,24 @@ public class ProjetoDAOImpl implements ProjetoDAO {
               }                                                      
                                                                      
               return null;                                       
-          }   
-       
-       
-       
-      public boolean updateProjeto(Projeto projeto) {
+          }
+
+    public Projeto getProjetoByName(String name) throws SQLException {
+        PreparedStatement ps = con.prepareStatement("SELECT * FROM projeto WHERE nome = ?");
+        ps.setString(1, name);
+        ResultSet rs = ps.executeQuery();
+        if(rs.next()){
+            int id = rs.getInt("id");
+            String nome = rs.getString("nome");
+            Projeto projeto = new Projeto(id, nome);
+            return projeto;
+        }
+        return new Projeto(-1, "");
+    }
+
+
+
+    public boolean updateProjeto(Projeto projeto) {
           String string = "UPDATE projeto SET nome = ?, andamento = ? WHERE id = ?";
           PreparedStatement pst;
           try {

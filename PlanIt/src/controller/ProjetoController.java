@@ -1,7 +1,6 @@
 package controller;
 import java.util.*;
 
-import dao.TarefaDAOImpl;
 import entity.Projeto;
 import dao.ProjetoDAOImpl;
 import entity.Usuario;
@@ -75,11 +74,10 @@ public class ProjetoController {
 	}
 
 	//PESQUISAR PROJETO POR NOME
-//	public Projeto pesquisarProjetoNome(String nome) {
-//		ProjetoDAOImpl dao = new ProjetoDAOImpl();
-//		Projeto projeto = dao.getProjetoByName(nome);
-//		return projeto;
-//	}
+	public static Projeto pesquisarProjetoNome(String nome) {
+		Projeto projeto = ProjetoServices.validaProjetoPesquisaNome(nome);
+		return projeto;
+	}
 	
 	//EDITAR PROJETO
 	public boolean editarProjeto(Projeto projeto) {
