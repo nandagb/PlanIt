@@ -97,6 +97,7 @@ public class TarefaServices {
         if(dataAtual.compareTo(tarefa.getPrazo()) <= 0){
             return true;
         }
+        System.out.println("O Prazo Informado Não é Valido.");
         return false;
     }
 

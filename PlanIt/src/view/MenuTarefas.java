@@ -4,6 +4,7 @@ import controller.TarefaController;
 import entity.Projeto;
 import entity.Tarefa;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.sql.Date;
 import java.util.List;
@@ -44,9 +45,16 @@ public class MenuTarefas {
         tarefa.setDescricao(descricao);
         System.out.println("Escreva o Prazo da Tarefa: \n" +
                 "Ex: 31-12-2002");
-        long prazo = scanner.nextLong();
-        Date prazosql = new Date(prazo);
+        String prazoString = scanner.nextLine();
+        int ano = Integer.parseInt(prazoString.split("/")[2]);
+        int mes = Integer.parseInt(prazoString.split("/")[1]);
+        int dia = Integer.parseInt(prazoString.split("/")[0]);
+        LocalDate localDate = LocalDate.of(ano, mes, dia);
+        Date prazosql = Date.valueOf(localDate);
         tarefa.setPrazo(prazosql);
-        TarefaController.criarTarefa(tarefa);
+        boolean criacao = TarefaController.criarTarefa(tarefa);
+        if(criacao == false){
+            System.out.println("Não Foi Possível Criar a Tarefa.");
+        }
     }
 }
