@@ -7,6 +7,7 @@ import entity.Projeto;
 import entity.Tarefa;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class ProjetoServices {
     public static boolean validaProjetoCriacao(Projeto projeto){
@@ -46,6 +47,12 @@ public class ProjetoServices {
             return true;
         }
         return false;
+    }
+
+    public static ArrayList<Projeto> validaBuscaTodosProjetos(){
+        ProjetoDAOImpl dao = new ProjetoDAOImpl();
+        ArrayList<Projeto> projetos = dao.getAllProjetos();
+        return projetos;
     }
 
     private static boolean validaNome(String nome){

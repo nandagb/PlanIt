@@ -89,4 +89,9 @@ public class ProjetoController {
 		}
 		return false;
 	}
+
+	public  static ArrayList<Projeto> acharTodosProjetos(){
+		ArrayList<Projeto> projetos = ProjetoServices.validaBuscaTodosProjetos();
+		return projetos;
+	}
 }

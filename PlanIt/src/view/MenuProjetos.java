@@ -4,6 +4,7 @@ import controller.ProjetoController;
 import controller.TarefaController;
 import entity.Projeto;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MenuProjetos  implements Menu {
@@ -13,14 +14,28 @@ public class MenuProjetos  implements Menu {
     public void exibirConteudo() {
         Scanner scanner = new Scanner(System.in);
         int opcao = 0;
-        while (opcao != 3){
-            System.out.println("PROJETOS: \n\n [1] Criar Projeto \n [2] Buscar Projeto \n [3] Voltar");
+        while (opcao != 4){
+            System.out.println("PROJETOS: \n [1] Criar Projeto \n [2] Buscar Projeto \n " +
+                    "[3] Listar Todos os Projetos \n [4] Voltar");
             opcao = scanner.nextInt();
             switch (opcao) {
                 case 1 -> exibirCriacaoProjeto();
                 case 2 -> exibirBuscaProjeto();
+                case 3 -> exibirTodosProjetos();
             }
         }
+    }
+
+    private void exibirTodosProjetos() {
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<Projeto> projetos = ProjetoController.acharTodosProjetos();
+        System.out.println("Escolha um projeto: \n");
+        projetos.forEach((Projeto projeto) -> System.out.println("[" + projetos.indexOf(projeto) +"] "
+                + projeto.getNome()));
+        System.out.println("[" + projetos.size() + "] Voltar");
+        int opcao = scanner.nextInt();
+        if(opcao == projetos.size());
+        else gerenciarProjeto(projetos.get(opcao));
     }
 
     private void exibirCriacaoProjeto() {
@@ -36,10 +51,15 @@ public class MenuProjetos  implements Menu {
         System.out.println("Informe o Nome Do Projeto: ");
         String nome = scanner.nextLine();
         Projeto projeto = ProjetoController.pesquisarProjetoNome(nome);
+        gerenciarProjeto(projeto);
+    }
+
+    private void gerenciarProjeto(Projeto projeto){
         if(projeto.getId() != -1){
+            Scanner scanner = new Scanner(System.in);
             this.projeto = projeto;
             System.out.println(projeto.getNome().toUpperCase() + ":\n ");
-            System.out.println(" [1] Editar Nome do Projeto \n [2]Ver Tarefas \n [3] Deletar Projeto \n [4] Voltar");
+            System.out.println(" [1] Editar Nome do Projeto \n [2] Ver Tarefas \n [3] Deletar Projeto \n [4] Voltar");
             int opcao = scanner.nextInt();
             switch (opcao){
                 case 1 -> editarProjeto();
