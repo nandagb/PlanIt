@@ -21,9 +21,9 @@ public class Tarefa {
         return nome;
     }
 
-    public Tarefa(){this.id = getNextId();}
+    public Tarefa(){this.id = getNextId(); this.status = "em_andamento";}
 
-    public Tarefa(int id){ this.id = id; }
+    public Tarefa(int id){ this.id = id; this.status = "em_andamento";}
     public Tarefa(int id, String nome, String descricao, String status, Date prazo, int project_id){
         this.id = id;
         this.nome = nome;

@@ -3,6 +3,7 @@ package view;
 import controller.ProjetoController;
 import controller.TarefaController;
 import entity.Projeto;
+import entity.Tarefa;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -59,11 +60,11 @@ public class MenuProjetos  implements Menu {
             Scanner scanner = new Scanner(System.in);
             this.projeto = projeto;
             System.out.println(projeto.getNome().toUpperCase() + ":\n ");
-            System.out.println(" [1] Editar Nome do Projeto \n [2] Ver Tarefas \n [3] Deletar Projeto \n [4] Voltar");
+            System.out.println(" [1] Editar Nome do Projeto \n [2] Tarefas \n [3] Deletar Projeto \n [4] Voltar");
             int opcao = scanner.nextInt();
             switch (opcao){
                 case 1 -> editarProjeto();
-                case 2 -> verTarefas();
+                case 2 -> MenuTarefas.exibirConteudo(this.projeto);
                 case 3 -> confirmarExclusao();
                 case 4 -> exibirConteudo();
             }
@@ -79,9 +80,6 @@ public class MenuProjetos  implements Menu {
         switch (opcao){
             case 1 -> ProjetoController.excluirProjeto(this.projeto);
         }
-    }
-
-    private void verTarefas() {
     }
 
     private void editarProjeto() {

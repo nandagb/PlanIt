@@ -76,11 +76,11 @@ public class TarefaDAOImpl implements TarefaDAO{
         return new Tarefa(-1);
     }
 
-    public List<Tarefa> findAllOnProject(int project_id) throws SQLException{
+    public ArrayList<Tarefa> findAllOnProject(int project_id) throws SQLException{
         PreparedStatement statement = con.prepareStatement("SELECT * FROM tarefa WHERE project_id = ?");
         statement.setInt(1, project_id);
         ResultSet resultSet = statement.executeQuery();
-        List<Tarefa> tarefas = new ArrayList<Tarefa>();
+        ArrayList<Tarefa> tarefas = new ArrayList<Tarefa>();
         while(resultSet.next()){
             int id = resultSet.getInt("id");
             String nome = resultSet.getString("nome");

@@ -77,11 +77,11 @@ public class TarefaServices {
         return new Tarefa(-1);
     }
 
-    public static List validaAcharIdProjeto(int idProjeto){
+    public static ArrayList<Tarefa> validaAcharIdProjeto(int idProjeto){
         TarefaDAO dao = new TarefaDAOImpl();
         try{
             if(idValido(idProjeto)){
-                List achados = dao.findAllOnProject(idProjeto);
+                ArrayList<Tarefa> achados = dao.findAllOnProject(idProjeto);
                 return achados;
             }
         }catch(SQLException e){
