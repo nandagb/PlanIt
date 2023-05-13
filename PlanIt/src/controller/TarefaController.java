@@ -48,4 +48,13 @@ public class TarefaController {
         ArrayList<Tarefa> achado = TarefaServices.validaAcharIdProjeto(idProjeto);
         return achado;
     }
+
+    public static void toggleConclusaoTarefa(Tarefa tarefa){
+        if (tarefa.getStatus().equals("em_andamento")){
+            tarefa.setStatus("finalizado");
+        }else{
+            tarefa.setStatus("em_andamento");
+        }
+        atualizarTarefa(tarefa);
+    }
 }

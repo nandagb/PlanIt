@@ -13,7 +13,12 @@ public class Projeto {
 		this.nome = nome;
 		this.andamento = 0;
 	}
-	
+
+	public Projeto(String nome){
+		this.id = getNextId();
+		this.nome = nome;
+	}
+
 	public String getNome() {
 		return nome;
 	}
