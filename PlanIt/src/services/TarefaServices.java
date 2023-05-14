@@ -97,6 +97,7 @@ public class TarefaServices {
         if(dataAtual.compareTo(tarefa.getPrazo()) <= 0){
             return true;
         }
+        System.out.println("O Prazo Informado Não é Valido.");
         return false;
     }
 
@@ -110,7 +111,7 @@ public class TarefaServices {
 
 //    CHECA SE O STATUS PASSADO É VÁLIDO
     public static boolean statusValido(Tarefa tarefa){
-        if(tarefa.getStatus() == "em_andamento" || tarefa.getStatus() == "finalizado" || tarefa.getStatus() == "atrasado"){
+        if(tarefa.getStatus().equals("em_andamento") || tarefa.getStatus().equals("finalizado") || tarefa.getStatus().equals("atrasado")){
             return true;
         }
         return false;
