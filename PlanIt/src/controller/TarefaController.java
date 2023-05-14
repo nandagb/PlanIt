@@ -6,6 +6,7 @@ import entity.Tarefa;
 import services.TarefaServices;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TarefaController {
@@ -43,8 +44,17 @@ public class TarefaController {
         return achado;
     }
 
-    public static List acharTarefasProjeto(int idProjeto){
-        List achado = TarefaServices.validaAcharIdProjeto(idProjeto);
+    public static ArrayList<Tarefa> acharTarefasProjeto(int idProjeto){
+        ArrayList<Tarefa> achado = TarefaServices.validaAcharIdProjeto(idProjeto);
         return achado;
+    }
+
+    public static void toggleConclusaoTarefa(Tarefa tarefa){
+        if (tarefa.getStatus().equals("em_andamento")){
+            tarefa.setStatus("finalizado");
+        }else{
+            tarefa.setStatus("em_andamento");
+        }
+        atualizarTarefa(tarefa);
     }
 }

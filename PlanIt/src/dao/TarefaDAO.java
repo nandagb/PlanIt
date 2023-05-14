@@ -3,6 +3,7 @@ package dao;
 import entity.Tarefa;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public interface TarefaDAO {
@@ -16,7 +17,7 @@ public interface TarefaDAO {
     boolean existe(Tarefa tarefa) throws SQLException;
 
 //  RETORNA UMA LISTA COM TODAS AS TAREFAS EM UM PROJETO.
-    List<Tarefa> findAllOnProject(int project_id) throws SQLException;
+    ArrayList<Tarefa> findAllOnProject(int project_id) throws SQLException;
 
 //  ATUALIZA A ENTRADA DE UMA TAREFA COM OS SEUS VALORES ATUAIS.
     void update(Tarefa tarefa) throws SQLException;
