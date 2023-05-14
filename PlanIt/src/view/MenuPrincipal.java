@@ -25,6 +25,9 @@ public class MenuPrincipal implements Menu {
 				case 1:
 					menu = new MenuProjetos();
 					menu.exibirConteudo();
+				case 2:
+					menu = new MenuUsuarios();
+					menu.exibirConteudo();
 			}
 		}
 	}

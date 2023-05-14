@@ -14,11 +14,15 @@ public class Projeto {
 		this.andamento = 0;
 	}
 
+<<<<<<< HEAD
+	
+=======
 	public Projeto(String nome){
 		this.id = getNextId();
 		this.nome = nome;
 	}
 
+>>>>>>> 57729864a74d369863219ac4e2cf5a7782f55533
 	public String getNome() {
 		return nome;
 	}

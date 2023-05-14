@@ -5,8 +5,22 @@ public class Usuario {
 	private String nome = "";
 	private String email;
 	private String senha;
+
+	private static int ultimoId;
 	
 	public Usuario() {
+	}
+
+	public Usuario(int id, String email) {
+		this.id = id;
+		this.email = email;
+	}
+
+	public Usuario(int id, String nome, String email, String senha) {
+		this.id = id;
+		this.nome = nome;
+		this.email = email;
+		this.senha = senha;
 	}
 	
 	public void setId(int id) {
@@ -44,6 +58,19 @@ public class Usuario {
 	
 	public void printUsuario() {
 		System.out.println("Nome: " + this.nome + " Email: " + this.email + " Id: " + this.id);
+	}
+
+	public static int getNextId(){
+		ultimoId ++;
+		return ultimoId;
+	}
+
+	public static int getUltimoId() {
+		return ultimoId;
+	}
+
+	public void setUltimoId(int id){
+		this.ultimoId = id;
 	}
 	
 	
