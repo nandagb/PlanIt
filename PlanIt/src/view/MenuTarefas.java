@@ -45,7 +45,7 @@ public class MenuTarefas {
     private static void gerenciarTarefas(Tarefa tarefa) {
         Scanner scanner = new Scanner(System.in);
         int opcao = 0;
-        while(true){
+        while(opcao != 5){
             System.out.println(tarefa.getNome().toUpperCase() + "\n");
             System.out.println(" [1] Editar Tarefa \n [2] Marcar Como Concluída \n" +
                     " [3] Deletar Tarefa \n [4] Ver Participantes \n [5] Voltar");
