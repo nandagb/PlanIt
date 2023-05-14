@@ -13,6 +13,7 @@ public class Projeto {
 		this.nome = nome;
 		this.andamento = 0;
 	}
+
 	
 	public String getNome() {
 		return nome;
