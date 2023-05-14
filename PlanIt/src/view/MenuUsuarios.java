@@ -2,6 +2,7 @@ package view;
 
 import controller.UsuarioController;
 import entity.Usuario;
+import services.UsuarioServices;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -106,7 +107,7 @@ public class MenuUsuarios implements Menu {
             } else if (opcao==3) {
                 System.out.println("Insira a senha atual do usuário: ");
                 String senhaAtual = scanner.nextLine();
-                if(senhaAtual.equals(this.usuario.getSenha())){
+                if(UsuarioServices.validaUsuarioSenha(senhaAtual, this.usuario)){
                     System.out.println("Insira a nova senha");
                     String novaSenha = scanner.nextLine();
                     this.usuario.setSenha(novaSenha);

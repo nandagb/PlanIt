@@ -39,6 +39,10 @@ public class UsuarioServices {
         return new Usuario(-1,"");
     }
 
+    public static boolean validaUsuarioSenha(String senha, Usuario usuario){
+        return senha.equals(usuario.getSenha());
+    }
+
     public static boolean validaDelecaoProjeto(Usuario usuario){
         UsuarioDAOImpl dao = new UsuarioDAOImpl();
         if(dao.deleteUsuario(usuario) == true){
