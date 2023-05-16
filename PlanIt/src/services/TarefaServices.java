@@ -2,12 +2,15 @@ package services;
 
 import dao.TarefaDAO;
 import dao.TarefaDAOImpl;
+import dao.TarefaUsuarioDAO;
+import dao.TarefaUsuarioDAOImpl;
 import entity.Tarefa;
+import entity.TarefaUsuario;
+import entity.Usuario;
 
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class TarefaServices {
     public static boolean validaTarefaCriacao(Tarefa tarefa){
@@ -32,6 +35,17 @@ public class TarefaServices {
                 return true;
             }
         }catch(SQLException e){
+            System.out.println(e);
+        }
+        return false;
+    }
+
+    public static boolean validaAtribuicao(TarefaUsuario atribuir){
+        TarefaUsuarioDAO dao = new TarefaUsuarioDAOImpl();
+        try{
+            dao.save(atribuir);
+            return true;
+        }catch (SQLException e){
             System.out.println(e);
         }
         return false;
@@ -88,6 +102,20 @@ public class TarefaServices {
             System.out.println(e);
         }
         return new ArrayList();
+    }
+
+    public static ArrayList<Usuario> validaAcharIdTarefa(int idTarefa){
+        TarefaUsuarioDAO dao = new TarefaUsuarioDAOImpl();
+        try{
+            if(idValido(idTarefa)){
+                ArrayList<Usuario> achados = dao.findAllParticipantes(idTarefa);
+                return achados;
+            }
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+        return new ArrayList();
+
     }
 
 //  CHECA SE A DATA DO PRAZO É POSTERIOR A DATA ATUAL
