@@ -12,6 +12,7 @@ import java.util.ArrayList;
 public class ProjetoServices {
     public static boolean validaProjetoCriacao(Projeto projeto){
         if(validaNome(projeto.getNome()) == true){
+            
             ProjetoDAOImpl dao = new ProjetoDAOImpl();
             dao.save(projeto);
             return true;
