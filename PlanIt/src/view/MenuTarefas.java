@@ -1,8 +1,11 @@
 package view;
 
 import controller.TarefaController;
+import controller.UsuarioController;
 import entity.Projeto;
 import entity.Tarefa;
+import entity.TarefaUsuario;
+import entity.Usuario;
 
 import javax.xml.transform.Source;
 import java.time.LocalDate;
@@ -13,6 +16,7 @@ import java.util.Scanner;
 
 public class MenuTarefas {
     static Projeto projetoTarefas;
+    static Usuario tarefaUsuarios;
     public static void exibirConteudo(Projeto projeto){
         projetoTarefas = projeto;
         Scanner scanner = new Scanner(System.in);
@@ -42,22 +46,63 @@ public class MenuTarefas {
         }
     }
 
+
     private static void gerenciarTarefas(Tarefa tarefa) {
         Scanner scanner = new Scanner(System.in);
         int opcao = 0;
-        while(opcao != 5){
+        while(opcao != 6){
             System.out.println(tarefa.getNome().toUpperCase() + "\n");
             System.out.println(" [1] Editar Tarefa \n [2] Marcar Como Concluída \n" +
-                    " [3] Deletar Tarefa \n [4] Ver Participantes \n [5] Voltar");
+                    " [3] Deletar Tarefa \n [4] Adicionar Participantes \n [5] Ver Participantes \n [6] Voltar");
             opcao = scanner.nextInt();
             switch (opcao){
                 case 1 -> editarTarefa(tarefa);
                 case 2 -> TarefaController.toggleConclusaoTarefa(tarefa);
                 case 3 -> confirmarExclusaoTarefa(tarefa);
-//            case 4 -> verParticipantes(tarefa);
-                case 5 -> exibirConteudo(projetoTarefas);
+                case 4 -> adicionarParticipantes(tarefa);
+                case 5 -> verParticipantes(tarefa);
+                case 6 -> exibirConteudo(projetoTarefas);
             }
         }
+    }
+
+    private static void verParticipantes(Tarefa tarefa){
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<Usuario> usuarios = TarefaController.acharParticipantesTarefa(tarefa.getId());
+        if(usuarios.size() == 0){
+            System.out.println("Nenhum Participante foi adicionado a esta tarefa");
+            //exibirConteudo(tarefa);
+        }
+        else {
+            System.out.println("Participantes:");
+            usuarios.forEach((Usuario usuario) -> System.out.println("[" + usuarios.indexOf(usuario)
+                    + "] " + usuario.getNome()));
+            //int opcao = scanner.nextInt();
+            //gerenciarTarefas(usuarios.get(opcao));
+        }
+    }
+
+    private static void adicionarParticipantes(Tarefa tarefa){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Digite quais usuário deseja adicionar a tarefa, pressione enter antes de digitar o próximo participante\n:");
+        ArrayList<Usuario> usuarios = UsuarioController.acharTodosUsuarios();
+        usuarios.forEach((Usuario usuario) -> System.out.println("[" + usuarios.indexOf(usuario) +"] " + usuario.getNome()));
+        System.out.println("[" + usuarios.size() + "] Voltar");
+        while(true){
+            int opcao = scanner.nextInt();
+            if(opcao == usuarios.size()) break;
+            else{
+                Usuario usuario = usuarios.get(opcao);
+                usuario.printUsuario();
+                TarefaUsuario atribuir = new TarefaUsuario(tarefa.getId(), usuario.getId());
+                atribuirTarefas(atribuir);
+                System.out.println("Usuario: " + usuario.getNome() + " foi adicionado à tarefa.");
+            }
+        }
+
+    }
+    private static void atribuirTarefas(TarefaUsuario atribuir){
+        TarefaController.adicionarParticipante(atribuir);
     }
 
     private static void confirmarExclusaoTarefa(Tarefa tarefa) {

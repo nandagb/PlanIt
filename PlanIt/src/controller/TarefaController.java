@@ -3,6 +3,8 @@ package controller;
 import dao.TarefaDAO;
 import dao.TarefaDAOImpl;
 import entity.Tarefa;
+import entity.TarefaUsuario;
+import entity.Usuario;
 import services.TarefaServices;
 
 import java.sql.SQLException;
@@ -21,6 +23,14 @@ public class TarefaController {
     public static boolean deletarTarefa(Tarefa tarefa){
         boolean delecao = TarefaServices.validaTarefaDelecao(tarefa);
         if(delecao){
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean adicionarParticipante(TarefaUsuario atribuir){
+        boolean atribuicao = TarefaServices.validaAtribuicao(atribuir);
+        if(atribuicao){
             return true;
         }
         return false;
@@ -46,6 +56,11 @@ public class TarefaController {
 
     public static ArrayList<Tarefa> acharTarefasProjeto(int idProjeto){
         ArrayList<Tarefa> achado = TarefaServices.validaAcharIdProjeto(idProjeto);
+        return achado;
+    }
+
+    public static ArrayList<Usuario> acharParticipantesTarefa(int idTarefa){
+        ArrayList<Usuario> achado = TarefaServices.validaAcharIdTarefa(idTarefa);
         return achado;
     }
 
