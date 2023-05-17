@@ -10,4 +10,6 @@ import java.util.ArrayList;
 public interface TarefaUsuarioDAO {
     public boolean save(TarefaUsuario atribuir) throws SQLException;
     public ArrayList<Usuario> findAllParticipantes(int tarefa_id) throws SQLException;
+
+    public boolean existe(TarefaUsuario usuario);
 }

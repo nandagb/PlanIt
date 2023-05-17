@@ -28,8 +28,8 @@ public class TarefaController {
         return false;
     }
 
-    public static boolean adicionarParticipante(TarefaUsuario atribuir){
-        boolean atribuicao = TarefaServices.validaAtribuicao(atribuir);
+    public static boolean adicionarParticipante(TarefaUsuario tarefa_atribuida){
+        boolean atribuicao = TarefaServices.validaAtribuicao(tarefa_atribuida);
         if(atribuicao){
             return true;
         }

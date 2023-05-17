@@ -71,14 +71,11 @@ public class MenuTarefas {
         ArrayList<Usuario> usuarios = TarefaController.acharParticipantesTarefa(tarefa.getId());
         if(usuarios.size() == 0){
             System.out.println("Nenhum Participante foi adicionado a esta tarefa");
-            //exibirConteudo(tarefa);
         }
         else {
             System.out.println("Participantes:");
             usuarios.forEach((Usuario usuario) -> System.out.println("[" + usuarios.indexOf(usuario)
                     + "] " + usuario.getNome()));
-            //int opcao = scanner.nextInt();
-            //gerenciarTarefas(usuarios.get(opcao));
         }
     }
 
@@ -94,15 +91,17 @@ public class MenuTarefas {
             else{
                 Usuario usuario = usuarios.get(opcao);
                 usuario.printUsuario();
-                TarefaUsuario atribuir = new TarefaUsuario(tarefa.getId(), usuario.getId());
-                atribuirTarefas(atribuir);
-                System.out.println("Usuario: " + usuario.getNome() + " foi adicionado à tarefa.");
+                TarefaUsuario tarefa_atribuida = new TarefaUsuario(tarefa.getId(), usuario.getId());
+                if(atribuirTarefas(tarefa_atribuida)){
+                    System.out.println("Usuario: " + usuario.getNome() + " foi adicionado à tarefa.");
+                }
+
             }
         }
 
     }
-    private static void atribuirTarefas(TarefaUsuario atribuir){
-        TarefaController.adicionarParticipante(atribuir);
+    private static boolean atribuirTarefas(TarefaUsuario tarefa_atribuida){
+        return TarefaController.adicionarParticipante(tarefa_atribuida);
     }
 
     private static void confirmarExclusaoTarefa(Tarefa tarefa) {

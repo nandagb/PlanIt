@@ -51,4 +51,22 @@ public class TarefaUsuarioDAOImpl implements TarefaUsuarioDAO{
         }
         return usuarios;
     };
+
+    public boolean existe(TarefaUsuario tarefa_atribuida) {
+        try {
+            String existe = "SELECT * FROM tarefa_usuario WHERE id_tarefa = ? AND id_usuario = ?";
+            PreparedStatement pst = con.prepareStatement(existe);
+            pst.setInt(1, tarefa_atribuida.getTarefaId());
+            pst.setInt(2, tarefa_atribuida.getUsuarioId());
+            ResultSet res = pst.executeQuery();
+            if (res.next()) {
+                if (res.getInt("id_usuario") == tarefa_atribuida.getUsuarioId()) {
+                    return true;
+                }
+            }
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+        return false;
+    }
 }

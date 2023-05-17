@@ -43,8 +43,15 @@ public class TarefaServices {
     public static boolean validaAtribuicao(TarefaUsuario atribuir){
         TarefaUsuarioDAO dao = new TarefaUsuarioDAOImpl();
         try{
-            dao.save(atribuir);
-            return true;
+            if(dao.existe(atribuir)){
+                System.out.println("Este participante já foi adicionado nesta tarefa!");
+                return false;
+            }
+            else{
+                dao.save(atribuir);
+                return true;
+            }
+
         }catch (SQLException e){
             System.out.println(e);
         }
