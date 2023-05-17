@@ -72,6 +72,11 @@ public class TarefaController {
         return achado;
     }
 
+    public static ArrayList<Tarefa> acharTarefasAtribuidas(int idUsuario){
+        ArrayList<Tarefa> achado = TarefaServices.validaAcharIdUsuario(idUsuario);
+        return achado;
+    }
+
     public static void toggleConclusaoTarefa(Tarefa tarefa){
         if (tarefa.getStatus().equals("em_andamento")){
             tarefa.setStatus("finalizado");

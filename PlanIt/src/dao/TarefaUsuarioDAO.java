@@ -1,5 +1,6 @@
 package dao;
 
+import entity.Tarefa;
 import entity.TarefaUsuario;
 import entity.Usuario;
 
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 public interface TarefaUsuarioDAO {
     public boolean save(TarefaUsuario atribuir) throws SQLException;
     public ArrayList<Usuario> findAllParticipantes(int tarefa_id) throws SQLException;
+    public ArrayList<Tarefa> findAllTarefasAtribuidas(int usuario_id) throws SQLException;
 
     public boolean existe(TarefaUsuario usuario);
 

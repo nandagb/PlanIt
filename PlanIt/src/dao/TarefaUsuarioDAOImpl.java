@@ -50,6 +50,24 @@ public class TarefaUsuarioDAOImpl implements TarefaUsuarioDAO{
             usuarios.add(achado);
         }
         return usuarios;
+    }
+
+    public ArrayList<Tarefa> findAllTarefasAtribuidas(int usuario_id) throws SQLException{
+        PreparedStatement statement = con.prepareStatement("SELECT * FROM tarefa_usuario WHERE  id_usuario = ?");
+        statement.setInt(1, usuario_id);
+        ResultSet resultSet = statement.executeQuery();
+        ArrayList<Integer> ids_tarefas = new ArrayList<Integer>();
+        while(resultSet.next()){
+            int id = resultSet.getInt("id_tarefa");
+            ids_tarefas.add(id);
+        }
+        ArrayList<Tarefa> tarefas = new ArrayList<Tarefa>();
+        for (int tarefa :  ids_tarefas) {
+            TarefaDAOImpl dao = new TarefaDAOImpl();
+            Tarefa achado = dao.findById(tarefa);
+            tarefas.add(achado);
+        }
+        return tarefas;
     };
 
     public boolean existe(TarefaUsuario tarefa_atribuida){

@@ -2,6 +2,7 @@ package dao;
 
 import db.DBConnection;
 import db.DBDriver;
+import entity.Tarefa;
 import entity.Usuario;
 
 import java.sql.PreparedStatement;
@@ -18,5 +19,6 @@ public interface UsuarioDAO {
     public Usuario getUsuarioByEmail(String email) throws SQLException;
     public boolean updateUsuario(Usuario usuario) throws SQLException;
     public boolean deleteUsuario(Usuario usuario) throws SQLException;
+
 
 }

@@ -138,6 +138,19 @@ public class TarefaServices {
 
     }
 
+    public static ArrayList<Tarefa> validaAcharIdUsuario(int idUsuario){
+        TarefaUsuarioDAO dao = new TarefaUsuarioDAOImpl();
+        try{
+            if(idValido(idUsuario)){
+                ArrayList<Tarefa> achados = dao.findAllTarefasAtribuidas(idUsuario);
+                return achados;
+            }
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+        return new ArrayList();
+
+    }
 //  CHECA SE A DATA DO PRAZO É POSTERIOR A DATA ATUAL
     public static boolean prazoValido(Tarefa tarefa){
         long timeStampAtual = System.currentTimeMillis();
