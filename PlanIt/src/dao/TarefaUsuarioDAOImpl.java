@@ -52,7 +52,7 @@ public class TarefaUsuarioDAOImpl implements TarefaUsuarioDAO{
         return usuarios;
     };
 
-    public boolean existe(TarefaUsuario tarefa_atribuida) {
+    public boolean existe(TarefaUsuario tarefa_atribuida){
         try {
             String existe = "SELECT * FROM tarefa_usuario WHERE id_tarefa = ? AND id_usuario = ?";
             PreparedStatement pst = con.prepareStatement(existe);
@@ -66,6 +66,25 @@ public class TarefaUsuarioDAOImpl implements TarefaUsuarioDAO{
             }
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
+        }
+        return false;
+    }
+
+
+    public boolean delete(TarefaUsuario participante_removido){
+        String string = "DELETE FROM tarefa_usuario WHERE id_tarefa = ? AND id_usuario = ?";
+        PreparedStatement pst;
+        try {
+            pst = con.prepareStatement(string);
+            pst.setInt(1, participante_removido.getTarefaId());
+            pst.setInt(2, participante_removido.getUsuarioId());
+
+            int res = pst.executeUpdate();
+            if(res == 1){
+                return true;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
         return false;
     }

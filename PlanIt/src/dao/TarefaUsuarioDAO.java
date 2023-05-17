@@ -12,4 +12,6 @@ public interface TarefaUsuarioDAO {
     public ArrayList<Usuario> findAllParticipantes(int tarefa_id) throws SQLException;
 
     public boolean existe(TarefaUsuario usuario);
+
+    public boolean delete(TarefaUsuario participante_removido);
 }

@@ -40,6 +40,19 @@ public class TarefaServices {
         return false;
     }
 
+    public static boolean validaParticipanteRemocao(TarefaUsuario participante_removido){
+        TarefaUsuarioDAO dao = new TarefaUsuarioDAOImpl();
+        try{
+            if(dao.existe(participante_removido)){
+                dao.delete(participante_removido);
+                return true;
+            }
+        }catch(RuntimeException e){
+            System.out.println(e);
+        }
+        return false;
+    }
+
     public static boolean validaAtribuicao(TarefaUsuario atribuir){
         TarefaUsuarioDAO dao = new TarefaUsuarioDAOImpl();
         try{

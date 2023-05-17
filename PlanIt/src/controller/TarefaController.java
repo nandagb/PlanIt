@@ -28,6 +28,14 @@ public class TarefaController {
         return false;
     }
 
+    public static boolean removerParticipanteTarefa(TarefaUsuario participante_removido){
+        boolean delecao = TarefaServices.validaParticipanteRemocao(participante_removido);
+        if(delecao){
+            return true;
+        }
+        return false;
+    }
+
     public static boolean adicionarParticipante(TarefaUsuario tarefa_atribuida){
         boolean atribuicao = TarefaServices.validaAtribuicao(tarefa_atribuida);
         if(atribuicao){

@@ -50,33 +50,52 @@ public class MenuTarefas {
     private static void gerenciarTarefas(Tarefa tarefa) {
         Scanner scanner = new Scanner(System.in);
         int opcao = 0;
-        while(opcao != 6){
+        while(opcao != 7){
             System.out.println(tarefa.getNome().toUpperCase() + "\n");
             System.out.println(" [1] Editar Tarefa \n [2] Marcar Como Concluída \n" +
-                    " [3] Deletar Tarefa \n [4] Adicionar Participantes \n [5] Ver Participantes \n [6] Voltar");
+                    " [3] Deletar Tarefa \n [4] Adicionar Participantes \n [5] Remover Participantes \n [6] Ver Participantes \n [7] Voltar");
             opcao = scanner.nextInt();
             switch (opcao){
                 case 1 -> editarTarefa(tarefa);
                 case 2 -> TarefaController.toggleConclusaoTarefa(tarefa);
                 case 3 -> confirmarExclusaoTarefa(tarefa);
                 case 4 -> adicionarParticipantes(tarefa);
-                case 5 -> verParticipantes(tarefa);
-                case 6 -> exibirConteudo(projetoTarefas);
+                case 5 -> removerParticipante(tarefa);
+                case 6 -> verParticipantes(tarefa);
+                //case 7 -> exibirConteudo(projetoTarefas);
             }
         }
     }
 
-    private static void verParticipantes(Tarefa tarefa){
+    private static void removerParticipante(Tarefa tarefa){
         Scanner scanner = new Scanner(System.in);
-        ArrayList<Usuario> usuarios = TarefaController.acharParticipantesTarefa(tarefa.getId());
-        if(usuarios.size() == 0){
+        System.out.println("Qual participante deseja remover desta tarefa?");
+        ArrayList<Usuario> participantes = verParticipantes(tarefa);
+        int opcao = scanner.nextInt();
+        Usuario participante = participantes.get(opcao);
+        TarefaUsuario participante_removido = new TarefaUsuario(tarefa.getId(), participante.getId());
+        if(TarefaController.removerParticipanteTarefa(participante_removido)){
+            System.out.println("Participante " + participante.getNome() + " removido com sucesso!");
+        }
+        else{
+            System.out.println("Não foi possível remover o usuário.");
+        }
+
+
+    }
+
+    private static ArrayList<Usuario> verParticipantes(Tarefa tarefa){
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<Usuario> participantes = TarefaController.acharParticipantesTarefa(tarefa.getId());
+        if(participantes.size() == 0){
             System.out.println("Nenhum Participante foi adicionado a esta tarefa");
         }
         else {
             System.out.println("Participantes:");
-            usuarios.forEach((Usuario usuario) -> System.out.println("[" + usuarios.indexOf(usuario)
-                    + "] " + usuario.getNome()));
+            participantes.forEach((Usuario participante) -> System.out.println("[" + participantes.indexOf(participante)
+                    + "] " + participante.getNome()));
         }
+        return participantes;
     }
 
     private static void adicionarParticipantes(Tarefa tarefa){
@@ -93,8 +112,10 @@ public class MenuTarefas {
                 usuario.printUsuario();
                 TarefaUsuario tarefa_atribuida = new TarefaUsuario(tarefa.getId(), usuario.getId());
                 if(atribuirTarefas(tarefa_atribuida)){
-                    System.out.println("Usuario: " + usuario.getNome() + " foi adicionado à tarefa.");
+                    System.out.println("Usuario " + usuario.getNome() + " foi adicionado à tarefa.");
                 }
+                System.out.println("Pressione 9 para voltar.");
+
 
             }
         }
