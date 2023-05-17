@@ -1,6 +1,8 @@
 package view;
 
+import controller.TarefaController;
 import controller.UsuarioController;
+import entity.Tarefa;
 import entity.Usuario;
 
 import java.util.ArrayList;
@@ -67,15 +69,31 @@ public class MenuUsuarios implements Menu {
             Scanner scanner = new Scanner(System.in);
             this.usuario = usuario;
             this.usuario.printUsuario();
-            System.out.println(" [1] Editar Usuario \n [2] Deletar Usuario \n [3] Voltar");
+            System.out.println(" [1] Editar Usuario \n [2] Ver tarefas atribuídas \n [3] Deletar Usuario \n [4] Voltar");
             int opcao = scanner.nextInt();
             switch (opcao){
                 case 1 -> editarUsuario();
-                case 2 -> confirmarExclusao();
-                case 3 -> exibirConteudo();
+                case 2 -> tarefasAtribuidas(usuario);
+                case 3 -> confirmarExclusao();
+                case 4 -> exibirConteudo();
             }
         }
-        else System.out.println("Usuario não encontrado.");
+        else System.out.println("Não foram encontrados usuários.");
+    }
+
+    private static ArrayList<Tarefa> tarefasAtribuidas(Usuario usuario){
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<Tarefa> tarefas = TarefaController.acharTarefasAtribuidas(usuario.getId());
+        if(tarefas.size() == 0){
+            System.out.println("Nenhuma Tarefa foi atribuída a esse participante.");
+        }
+        else {
+            System.out.println("Tarefas:");
+            tarefas.forEach((Tarefa tarefa_atribuida) -> System.out.println("[" + tarefas.indexOf(tarefa_atribuida)
+                    + "] " + tarefa_atribuida.getNome()));
+            System.out.println();
+        }
+        return tarefas;
     }
 
     private void confirmarExclusao() {

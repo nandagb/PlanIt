@@ -28,8 +28,16 @@ public class TarefaController {
         return false;
     }
 
-    public static boolean adicionarParticipante(TarefaUsuario atribuir){
-        boolean atribuicao = TarefaServices.validaAtribuicao(atribuir);
+    public static boolean removerParticipanteTarefa(TarefaUsuario participante_removido){
+        boolean delecao = TarefaServices.validaParticipanteRemocao(participante_removido);
+        if(delecao){
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean adicionarParticipante(TarefaUsuario tarefa_atribuida){
+        boolean atribuicao = TarefaServices.validaAtribuicao(tarefa_atribuida);
         if(atribuicao){
             return true;
         }
@@ -61,6 +69,11 @@ public class TarefaController {
 
     public static ArrayList<Usuario> acharParticipantesTarefa(int idTarefa){
         ArrayList<Usuario> achado = TarefaServices.validaAcharIdTarefa(idTarefa);
+        return achado;
+    }
+
+    public static ArrayList<Tarefa> acharTarefasAtribuidas(int idUsuario){
+        ArrayList<Tarefa> achado = TarefaServices.validaAcharIdUsuario(idUsuario);
         return achado;
     }
 
