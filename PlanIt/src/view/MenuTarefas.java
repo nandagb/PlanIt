@@ -62,7 +62,7 @@ public class MenuTarefas {
                 case 4 -> adicionarParticipantes(tarefa);
                 case 5 -> removerParticipante(tarefa);
                 case 6 -> verParticipantes(tarefa);
-                //case 7 -> exibirConteudo(projetoTarefas);
+
             }
         }
     }
@@ -114,7 +114,7 @@ public class MenuTarefas {
                 if(atribuirTarefas(tarefa_atribuida)){
                     System.out.println("Usuario " + usuario.getNome() + " foi adicionado à tarefa.");
                 }
-                System.out.println("Pressione 9 para voltar.");
+                System.out.println("Pressione " + usuarios.size() + " para voltar.");
 
 
             }
