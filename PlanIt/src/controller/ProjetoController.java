@@ -9,11 +9,13 @@ import services.ProjetoServices;
 public class ProjetoController {
 	
 	private ProjetoDAOImpl projetos;
+	private ProjetoServices services;
 	private List<Projeto> listaProjetos;
 	
 	public ProjetoController() {
 		projetos = new ProjetoDAOImpl();
 		listaProjetos = projetos.getAllProjetos();
+		this.services = new ProjetoServices();
 	}
 	
 	
@@ -48,13 +50,13 @@ public class ProjetoController {
 	}
 	
 //	ADICIONAR PROJETO
-	public static void criaProjeto(int id, String nome) {
+	public void criaProjeto(int id, String nome) {
 		Projeto projeto = new Projeto(id, nome);
-		ProjetoServices.validaProjetoCriacao(projeto);
+		services.validaProjetoCriacao(projeto);
 	}
 	
 //	EXCLUIR PROJETOS
-	public static void excluirProjeto(Projeto projeto) {
+	public void excluirProjeto(Projeto projeto) {
 			ProjetoDAOImpl dao = new ProjetoDAOImpl();
 			dao.deleteProjeto(projeto);
 	}
@@ -69,19 +71,19 @@ public class ProjetoController {
 	
 //	PESQUISAR PROJETO POR ID
 	public Projeto pesquisarProjetoId(int id) {
-		Projeto projeto = ProjetoServices.validaProjetoPesquisaId(id);
+		Projeto projeto = services.validaProjetoPesquisaId(id);
 		return projeto;
 	}
 
 	//PESQUISAR PROJETO POR NOME
-	public static Projeto pesquisarProjetoNome(String nome) {
-		Projeto projeto = ProjetoServices.validaProjetoPesquisaNome(nome);
+	public Projeto pesquisarProjetoNome(String nome) {
+		Projeto projeto = services.validaProjetoPesquisaNome(nome);
 		return projeto;
 	}
 	
 	//EDITAR PROJETO
-	public static boolean editarProjeto(Projeto projeto) {
-		ProjetoServices.validaProjetoPesquisaId(projeto.getId());
+	public boolean editarProjeto(Projeto projeto) {
+		services.validaProjetoPesquisaId(projeto.getId());
 		if(projeto.getId() != -1){
 			ProjetoDAOImpl dao = new ProjetoDAOImpl();
 			dao.updateProjeto(projeto);
@@ -90,8 +92,8 @@ public class ProjetoController {
 		return false;
 	}
 
-	public  static ArrayList<Projeto> acharTodosProjetos(){
-		ArrayList<Projeto> projetos = ProjetoServices.validaBuscaTodosProjetos();
+	public ArrayList<Projeto> acharTodosProjetos(){
+		ArrayList<Projeto> projetos = services.validaBuscaTodosProjetos();
 		return projetos;
 	}
 }

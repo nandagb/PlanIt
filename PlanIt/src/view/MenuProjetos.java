@@ -10,6 +10,11 @@ import java.util.Scanner;
 
 public class MenuProjetos  implements Menu {
     Projeto projeto;
+    ProjetoController controller;
+
+    public MenuProjetos(){
+        this.controller = new ProjetoController();
+    }
 
     @Override
     public void exibirConteudo() {
@@ -29,7 +34,7 @@ public class MenuProjetos  implements Menu {
 
     private void exibirTodosProjetos() {
         Scanner scanner = new Scanner(System.in);
-        ArrayList<Projeto> projetos = ProjetoController.acharTodosProjetos();
+        ArrayList<Projeto> projetos = controller.acharTodosProjetos();
         System.out.println("Escolha um projeto: \n");
         projetos.forEach((Projeto projeto) -> System.out.println("[" + projetos.indexOf(projeto) +"] "
                 + projeto.getNome()));
@@ -43,7 +48,7 @@ public class MenuProjetos  implements Menu {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Informe o Nome Do Projeto: ");
         String nome = scanner.nextLine();
-        ProjetoController.criaProjeto(Projeto.getNextId(), nome);
+        controller.criaProjeto(Projeto.getNextId(), nome);
         System.out.println("Projeto \"" + nome + "\" Criado com Sucesso!");
     }
 
@@ -51,7 +56,7 @@ public class MenuProjetos  implements Menu {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Informe o Nome Do Projeto: ");
         String nome = scanner.nextLine();
-        Projeto projeto = ProjetoController.pesquisarProjetoNome(nome);
+        Projeto projeto = controller.pesquisarProjetoNome(nome);
         gerenciarProjeto(projeto);
     }
 
@@ -78,7 +83,7 @@ public class MenuProjetos  implements Menu {
         System.out.println(" [1] Sim \n [2] Não");
         int opcao = scanner.nextInt();
         switch (opcao){
-            case 1 -> ProjetoController.excluirProjeto(this.projeto);
+            case 1 -> controller.excluirProjeto(this.projeto);
         }
     }
 
@@ -87,6 +92,6 @@ public class MenuProjetos  implements Menu {
         System.out.println("Insira Um Novo Nome Para o Projeto:");
         String nome = scanner.nextLine();
         this.projeto.setNome(nome);
-        ProjetoController.editarProjeto(this.projeto);
+        controller.editarProjeto(this.projeto);
     }
 }

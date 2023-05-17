@@ -10,21 +10,23 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ProjetoServices {
-    public static boolean validaProjetoCriacao(Projeto projeto){
+    private ProjetoDAOImpl dao;
+
+    public ProjetoServices(){
+        this.dao = new ProjetoDAOImpl();
+    }
+    public boolean validaProjetoCriacao(Projeto projeto){
         if(validaNome(projeto.getNome()) == true){
-            
-            ProjetoDAOImpl dao = new ProjetoDAOImpl();
-            dao.save(projeto);
+            this.dao.save(projeto);
             return true;
         }
         return false;
     }
 
-    public static Projeto validaProjetoPesquisaNome(String nome){
+    public Projeto validaProjetoPesquisaNome(String nome){
         if(validaNome(nome) == true){
             try{
-                ProjetoDAOImpl dao = new ProjetoDAOImpl();
-                Projeto projeto = dao.getProjetoByName(nome);
+                Projeto projeto = this.dao.getProjetoByName(nome);
                 return projeto;
             }catch (SQLException e){
                 System.out.println(e);
@@ -33,37 +35,34 @@ public class ProjetoServices {
         return new Projeto(-1,"");
     }
 
-    public static Projeto validaProjetoPesquisaId(int id){
+    public Projeto validaProjetoPesquisaId(int id){
         if(validaId(id) == true){
-            ProjetoDAOImpl dao = new ProjetoDAOImpl();
-            Projeto projeto = dao.getProjetoById(id);
+            Projeto projeto = this.dao.getProjetoById(id);
             return projeto;
         }
         return new Projeto(-1,"");
     }
 
-    public static boolean validaDelecaoProjeto(Projeto projeto){
-        ProjetoDAOImpl dao = new ProjetoDAOImpl();
-        if(dao.deleteProjeto(projeto) == true){
+    public boolean validaDelecaoProjeto(Projeto projeto){
+        if(this.dao.deleteProjeto(projeto) == true){
             return true;
         }
         return false;
     }
 
-    public static ArrayList<Projeto> validaBuscaTodosProjetos(){
-        ProjetoDAOImpl dao = new ProjetoDAOImpl();
-        ArrayList<Projeto> projetos = dao.getAllProjetos();
+    public ArrayList<Projeto> validaBuscaTodosProjetos(){
+        ArrayList<Projeto> projetos = this.dao.getAllProjetos();
         return projetos;
     }
 
-    private static boolean validaNome(String nome){
+    private boolean validaNome(String nome){
         if(nome.trim().length() > 0){
             return true;
         }
         return false;
     }
 
-    private static boolean validaId(int id){
+    private boolean validaId(int id){
         if(id > 0){
             return true;
         }
