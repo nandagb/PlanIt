@@ -19,6 +19,12 @@ public class RelatorioProjeto implements Relatorio{
         this.id_projeto = id_projeto;
     }
 
+    public RelatorioProjeto(int id, int num){
+        this.id = id;
+    }
+
+
+
     public void setNTarefas(int num){
         this.ntarefas = num;
     }
@@ -90,6 +96,19 @@ public class RelatorioProjeto implements Relatorio{
 
     public int getId(){
         return this.id;
+    }
+
+    public void printRelatorio(){
+        System.out.println("===================================================");
+        System.out.println("\t\t\t\tRelatório");
+        System.out.println("Número de tarefas: " + ntarefas);
+        System.out.println("Número de tarefas concluídas: " + ntarefas_concluidas);
+        System.out.println("Porcentagem de tarefas concluídas: " + porcentagem_concluido);
+        System.out.println("Tempo médio de resolução de tarefa: " + tmedio_tarefa);
+        System.out.println("Número de tarefas sem participantes: " + ntarefas_sem_usuario);
+        System.out.println("===================================================");
+        System.out.println();
+
     }
 
 

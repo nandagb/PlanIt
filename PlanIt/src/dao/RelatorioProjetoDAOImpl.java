@@ -49,4 +49,27 @@ public class RelatorioProjetoDAOImpl {
         }
         return false;
     }
+
+    public RelatorioProjeto getRelatorioById(int id) {
+        String projeto = "SELECT * FROM relatorioprojeto";
+
+        PreparedStatement ps;
+
+        try {
+            ps = con.prepareStatement(projeto);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                RelatorioProjeto a = new RelatorioProjeto(rs.getInt("id"), 0);
+                if(a.getId() == id) {
+                    return a;
+                }
+
+            }
+
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+
+        return null;
+    }
 }

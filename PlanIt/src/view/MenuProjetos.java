@@ -1,8 +1,11 @@
 package view;
 
 import controller.ProjetoController;
+import controller.RelatorioProjetoController;
 import controller.TarefaController;
 import entity.Projeto;
+import entity.Relatorio;
+import entity.RelatorioProjeto;
 import entity.Tarefa;
 
 import java.util.ArrayList;
@@ -55,18 +58,25 @@ public class MenuProjetos  implements Menu {
         gerenciarProjeto(projeto);
     }
 
+    private void exibirRelatorio(Projeto projeto){
+        int id_relatorio = projeto.getId_relatorio();
+        RelatorioProjeto relatorio = RelatorioProjetoController.pesquisarRelatorioId(id_relatorio);
+        relatorio.printRelatorio();
+    }
+
     private void gerenciarProjeto(Projeto projeto){
         if(projeto.getId() != -1){
             Scanner scanner = new Scanner(System.in);
             this.projeto = projeto;
             System.out.println(projeto.getNome().toUpperCase() + ":\n ");
-            System.out.println(" [1] Editar Nome do Projeto \n [2] Tarefas \n [3] Deletar Projeto \n [4] Voltar");
+            System.out.println(" [1] Editar Nome do Projeto \n [2] Tarefas \n [3] Ver Relátorio \n [4] Deletar Projeto \n [5] Voltar");
             int opcao = scanner.nextInt();
             switch (opcao){
                 case 1 -> editarProjeto();
                 case 2 -> MenuTarefas.exibirConteudo(this.projeto);
-                case 3 -> confirmarExclusao();
-                case 4 -> exibirConteudo();
+                case 3 -> exibirRelatorio(this.projeto);
+                case 4-> confirmarExclusao();
+                case 5 -> exibirConteudo();
             }
         }
         else System.out.println("Projeto não encontrado.");
