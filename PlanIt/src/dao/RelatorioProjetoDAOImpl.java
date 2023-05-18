@@ -5,6 +5,7 @@ import db.DBDriver;
 import entity.Projeto;
 import entity.Relatorio;
 import entity.RelatorioProjeto;
+import entity.Usuario;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -36,7 +37,6 @@ public class RelatorioProjetoDAOImpl {
 
 
             pst.setInt(1, relatorio.getNextId());
-            System.out.println("");
             statement.executeUpdate("UPDATE ids SET next_id_relatorioprojeto = " + relatorio.getUltimoId());
             pst.setInt(2, relatorio.getIdProjeto());
 
@@ -68,6 +68,63 @@ public class RelatorioProjetoDAOImpl {
 
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
+        }
+
+        return null;
+    }
+
+
+    public boolean updateRelatorioProjeto(RelatorioProjeto relatorio) {
+        String string = "UPDATE relatorioprojeto SET ntarefas = ?, ntarefas_concluidas = ?, porcentagem_concluido = ?, tmedio_tarefa = ?, tarefas_atrasadas = ?, ntarefas_sem_usuario = ? WHERE id = ?";
+        PreparedStatement pst;
+        try {
+            pst = con.prepareStatement(string);
+            pst.setInt(1, relatorio.getNTarefas());
+            pst.setInt(2, relatorio.getNTarefasConcluidas());
+            pst.setFloat(3, relatorio.getPorcentagemConcluido());
+            pst.setFloat(4, relatorio.getTmedioTarefa());
+            pst.setInt(5, relatorio.getTarefasAtrasadas());
+            pst.setInt(6, relatorio.getNTarefasSemUsuario());
+            pst.setInt(7, relatorio.getId());
+            int res = pst.executeUpdate();
+            if(res == 1){
+                return true;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return false;
+    }
+
+    public RelatorioProjeto getRelatorioByProjetoId(Integer id_projeto) {
+
+        String relatorio = "SELECT * FROM relatorioprojeto";
+
+        PreparedStatement ps;
+
+        try {
+            ps = con.prepareStatement(relatorio);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                RelatorioProjeto a = new RelatorioProjeto();
+                System.out.println("ntarefas: " + rs.getInt("ntarefas"));
+                a.setNTarefas(rs.getInt("ntarefas"));
+                a.setNTarefasConcluidas(rs.getInt("ntarefas_concluidas"));
+                a.setPorcentagemConcluido(rs.getFloat("porcentagem_concluido"));
+                a.setTmedioTarefa(rs.getFloat("tmedio_tarefa"));
+                a.setTarefasAtrasadas(rs.getInt("tarefas_atrasadas"));
+                a.setNTarefasSemUsuario(rs.getInt("ntarefas_sem_usuario"));
+                a.setProjetoI(rs.getInt("id_projeto"));
+                a.setId(rs.getInt("id"));
+
+                if(a.getIdProjeto() == id_projeto) {
+                    return a;
+                }
+
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex);
         }
 
         return null;

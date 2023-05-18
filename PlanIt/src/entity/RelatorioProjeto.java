@@ -1,12 +1,12 @@
 package entity;
 
 public class RelatorioProjeto implements Relatorio{
-    private int ntarefas;
-    private int ntarefas_concluidas;
-    private float porcentagem_concluido;
-    private float tmedio_tarefa;
-    private int tarefas_atrasadas;
-    private int ntarefas_sem_usuario;
+    private int ntarefas = 0;
+    private int ntarefas_concluidas = 0;
+    private float porcentagem_concluido = 0;
+    private float tmedio_tarefa = 0;
+    private int tarefas_atrasadas = 0;
+    private int ntarefas_sem_usuario = 0;
     private int id_projeto;
     private int id;
     private static int ultimoId;
@@ -93,6 +93,9 @@ public class RelatorioProjeto implements Relatorio{
     public void setUltimoId(int id){
         this.ultimoId = id;
     }
+    public void setProjetoI(int id){
+        this.id_projeto = id;
+    }
 
     public int getId(){
         return this.id;
@@ -101,14 +104,19 @@ public class RelatorioProjeto implements Relatorio{
     public void printRelatorio(){
         System.out.println("===================================================");
         System.out.println("\t\t\t\tRelatório");
-        System.out.println("Número de tarefas: " + ntarefas);
-        System.out.println("Número de tarefas concluídas: " + ntarefas_concluidas);
-        System.out.println("Porcentagem de tarefas concluídas: " + porcentagem_concluido);
-        System.out.println("Tempo médio de resolução de tarefa: " + tmedio_tarefa);
-        System.out.println("Número de tarefas sem participantes: " + ntarefas_sem_usuario);
+        System.out.println("Número de tarefas: " + this.ntarefas);
+        System.out.println("Número de tarefas concluídas: " + this.ntarefas_concluidas);
+        System.out.println("Porcentagem de tarefas concluídas: " + this.porcentagem_concluido);
+        System.out.println("Tempo médio de resolução de tarefa: " + this.tmedio_tarefa);
+        System.out.println("Número de tarefas atrasadas: " + this.tarefas_atrasadas);
+        System.out.println("Número de tarefas sem participantes: " + this.ntarefas_sem_usuario);
         System.out.println("===================================================");
         System.out.println();
 
+    }
+
+    public void adicionarTarefa(){
+        this.ntarefas++;
     }
 
 

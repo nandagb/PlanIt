@@ -17,4 +17,14 @@ public class RelatorioProjetoController {
         RelatorioProjeto relatorio = RelatorioProjetoServices.validaRelatorioPesquisaId(id);
         return relatorio;
     }
+
+    public static RelatorioProjeto pesquisarRelatorioPorProjeto(int id_projeto){
+        RelatorioProjeto relatorio = RelatorioProjetoServices.validaRelatorioPesquisaProjetoId(id_projeto);
+        return relatorio;
+    }
+
+    public static boolean adicionarTarefa(int id_projeto){
+        return RelatorioProjetoServices.validaAdicionarTarefa(id_projeto);
+
+    }
 }

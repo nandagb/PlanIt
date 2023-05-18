@@ -1,5 +1,6 @@
 package view;
 
+import controller.RelatorioProjetoController;
 import controller.TarefaController;
 import controller.UsuarioController;
 import entity.Projeto;
@@ -192,6 +193,9 @@ public class MenuTarefas {
         if(criacao == false){
             System.out.println("Não Foi Possível Criar a Tarefa.");
         }
+
+        RelatorioProjetoController.adicionarTarefa(projeto.getId());
+
         exibirConteudo(projeto);
     }
 }

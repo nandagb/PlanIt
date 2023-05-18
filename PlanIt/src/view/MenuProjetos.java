@@ -59,8 +59,9 @@ public class MenuProjetos  implements Menu {
     }
 
     private void exibirRelatorio(Projeto projeto){
-        int id_relatorio = projeto.getId_relatorio();
-        RelatorioProjeto relatorio = RelatorioProjetoController.pesquisarRelatorioId(id_relatorio);
+        int id_projeto = projeto.getId();
+        System.out.println("pesquisando id projeto: " + id_projeto);
+        RelatorioProjeto relatorio = RelatorioProjetoController.pesquisarRelatorioPorProjeto(id_projeto);
         relatorio.printRelatorio();
     }
 
