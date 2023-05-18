@@ -5,6 +5,7 @@ public class Projeto {
 	private String nome;
 	private Usuario[] equipe = new Usuario[1];
 	private float andamento;
+	private int id_relatorio;
 
 	private static int ultimoId;
 	
@@ -63,5 +64,13 @@ public class Projeto {
 
 	public void setUltimoId(int id){
 		this.ultimoId = id;
+	}
+
+	public void setIdRelatorio(int id_relatorio) {
+		this.id_relatorio = id_relatorio;
+	}
+
+	public int getId_relatorio(){
+		return this.id_relatorio;
 	}
 }

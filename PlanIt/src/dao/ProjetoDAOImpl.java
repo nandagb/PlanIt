@@ -3,6 +3,7 @@ package dao;
 import db.DBConnection;
 import db.DBDriver;
 import entity.Projeto;
+import entity.RelatorioProjeto;
 import entity.Tarefa;
 
 import java.sql.*;
@@ -39,10 +40,16 @@ public class ProjetoDAOImpl implements ProjetoDAO {
                 
                 pst.setInt(1, projeto.getNextId());
                 statement.executeUpdate("UPDATE ids SET next_id_projeto = " + projeto.getUltimoId());
+
+                RelatorioProjeto relatorio = new RelatorioProjeto(projeto.getUltimoId());
+                RelatorioProjetoDAOImpl daoRelatorio = new RelatorioProjetoDAOImpl();
+
+
                 pst.setString(2, projeto.getNome());
                 pst.setFloat(3, projeto.getAndamento());
 
                 int res = pst.executeUpdate();
+                daoRelatorio.save(relatorio);
                 if (res == 1) {
                     return true;
                 }
