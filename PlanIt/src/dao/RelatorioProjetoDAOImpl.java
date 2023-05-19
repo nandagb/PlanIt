@@ -107,7 +107,6 @@ public class RelatorioProjetoDAOImpl {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 RelatorioProjeto a = new RelatorioProjeto();
-                System.out.println("ntarefas: " + rs.getInt("ntarefas"));
                 a.setNTarefas(rs.getInt("ntarefas"));
                 a.setNTarefasConcluidas(rs.getInt("ntarefas_concluidas"));
                 a.setPorcentagemConcluido(rs.getFloat("porcentagem_concluido"));
