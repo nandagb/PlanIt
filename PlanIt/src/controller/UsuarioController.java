@@ -12,15 +12,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UsuarioController {
-    private static UsuarioDAOImpl usuarios = new UsuarioDAOImpl();
-	private List<Usuario> listaUsuario = usuarios.getAllUsuarios();
+    private UsuarioDAOImpl dao = new UsuarioDAOImpl();
 
+	private UsuarioServices services;
+	private List<Usuario> listaUsuario = dao.getAllUsuarios();
 
-    public static void createUsuario(Usuario usuario) {
-    	if( usuarios.emailEmUso(usuario) ) {
+	public UsuarioController(){
+		this.services = new UsuarioServices();
+	}
+
+    public void createUsuario(Usuario usuario) {
+    	if( dao.emailEmUso(usuario) ) {
 			System.out.println("Este email já foi cadastrado!");
 		}
-		else if (usuarios.save(usuario) == false) {
+		else if (dao.save(usuario) == false) {
 			System.out.println("Este usuário já existe!");
 		}
 		else {
@@ -29,19 +34,19 @@ public class UsuarioController {
     }
 
     public Usuario getUsuarioById(int id) {
-    	return usuarios.getUsuarioById(id);
+    	return dao.getUsuarioById(id);
     }
     
     public Usuario getUserByEmail(String email) throws SQLException {
-    	return usuarios.getUsuarioByEmail(email);
+    	return dao.getUsuarioByEmail(email);
     }
 
-    public static void updateUsuario(Usuario updatedUsuario) {
-    	usuarios.updateUsuario(updatedUsuario);
+    public void updateUsuario(Usuario updatedUsuario) {
+    	dao.updateUsuario(updatedUsuario);
     }
 
-    public static void deleteUsuario(Usuario usuario) {
-    	if(usuarios.deleteUsuario(usuario)) {
+    public void deleteUsuario(Usuario usuario) {
+    	if(dao.deleteUsuario(usuario)) {
 			System.out.println(" Usuário deletado com sucesso!");
 		}
 		else {
@@ -55,13 +60,13 @@ public class UsuarioController {
 		}
     }
 
-	public  static ArrayList<Usuario> acharTodosUsuarios(){
-		ArrayList<Usuario> usuarios = UsuarioServices.validaBuscaTodosUsuarios();
+	public ArrayList<Usuario> acharTodosUsuarios(){
+		ArrayList<Usuario> usuarios = services.validaBuscaTodosUsuarios();
 		return usuarios;
 	}
 
-	public static Usuario pesquisarUsuarioEmail(String email) {
-		Usuario usuario = UsuarioServices.validaUsuarioPesquisaEmail(email);
+	public Usuario pesquisarUsuarioEmail(String email) {
+		Usuario usuario = services.validaUsuarioPesquisaEmail(email);
 		return usuario;
 	}
     

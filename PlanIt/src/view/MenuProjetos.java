@@ -67,9 +67,10 @@ public class MenuProjetos  implements Menu {
             System.out.println(projeto.getNome().toUpperCase() + ":\n ");
             System.out.println(" [1] Editar Nome do Projeto \n [2] Tarefas \n [3] Deletar Projeto \n [4] Voltar");
             int opcao = scanner.nextInt();
+            MenuTarefas menuTarefas = new MenuTarefas();
             switch (opcao){
                 case 1 -> editarProjeto();
-                case 2 -> MenuTarefas.exibirConteudo(this.projeto);
+                case 2 -> menuTarefas.exibirConteudo(this.projeto);
                 case 3 -> confirmarExclusao();
                 case 4 -> exibirConteudo();
             }

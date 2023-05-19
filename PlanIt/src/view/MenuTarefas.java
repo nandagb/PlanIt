@@ -15,9 +15,14 @@ import java.util.List;
 import java.util.Scanner;
 
 public class MenuTarefas {
-    static Projeto projetoTarefas;
-    static Usuario tarefaUsuarios;
-    public static void exibirConteudo(Projeto projeto){
+    Projeto projetoTarefas;
+    private TarefaController controller;
+    Usuario tarefaUsuarios;
+
+    public MenuTarefas(){
+        controller = new TarefaController();
+    }
+    public void exibirConteudo(Projeto projeto){
         projetoTarefas = projeto;
         Scanner scanner = new Scanner(System.in);
         int opcao = 0;
@@ -30,9 +35,9 @@ public class MenuTarefas {
             }
         }
     }
-    public static void exibirTarefas(Projeto projeto){
+    public void exibirTarefas(Projeto projeto){
         Scanner scanner = new Scanner(System.in);
-        ArrayList<Tarefa> tarefas = TarefaController.acharTarefasProjeto(projeto.getId());
+        ArrayList<Tarefa> tarefas = this.controller.acharTarefasProjeto(projeto.getId());
         if(tarefas.size() == 0){
             System.out.println("Nenhuma Tarefa Encontrada");
             exibirConteudo(projeto);
@@ -47,7 +52,7 @@ public class MenuTarefas {
     }
 
 
-    private static void gerenciarTarefas(Tarefa tarefa) {
+    private void gerenciarTarefas(Tarefa tarefa) {
         Scanner scanner = new Scanner(System.in);
         int opcao = 0;
         while(opcao != 7){
@@ -57,7 +62,7 @@ public class MenuTarefas {
             opcao = scanner.nextInt();
             switch (opcao){
                 case 1 -> editarTarefa(tarefa);
-                case 2 -> TarefaController.toggleConclusaoTarefa(tarefa);
+                case 2 -> this.controller.toggleConclusaoTarefa(tarefa);
                 case 3 -> confirmarExclusaoTarefa(tarefa);
                 case 4 -> adicionarParticipantes(tarefa);
                 case 5 -> removerParticipante(tarefa);
@@ -67,14 +72,14 @@ public class MenuTarefas {
         }
     }
 
-    private static void removerParticipante(Tarefa tarefa){
+    private void removerParticipante(Tarefa tarefa){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Qual participante deseja remover desta tarefa?");
         ArrayList<Usuario> participantes = verParticipantes(tarefa);
         int opcao = scanner.nextInt();
         Usuario participante = participantes.get(opcao);
         TarefaUsuario participante_removido = new TarefaUsuario(tarefa.getId(), participante.getId());
-        if(TarefaController.removerParticipanteTarefa(participante_removido)){
+        if(this.controller.removerParticipanteTarefa(participante_removido)){
             System.out.println("Participante " + participante.getNome() + " removido com sucesso!");
         }
         else{
@@ -84,9 +89,9 @@ public class MenuTarefas {
 
     }
 
-    private static ArrayList<Usuario> verParticipantes(Tarefa tarefa){
+    private ArrayList<Usuario> verParticipantes(Tarefa tarefa){
         Scanner scanner = new Scanner(System.in);
-        ArrayList<Usuario> participantes = TarefaController.acharParticipantesTarefa(tarefa.getId());
+        ArrayList<Usuario> participantes = this.controller.acharParticipantesTarefa(tarefa.getId());
         if(participantes.size() == 0){
             System.out.println("Nenhum Participante foi adicionado a esta tarefa");
         }
@@ -98,10 +103,11 @@ public class MenuTarefas {
         return participantes;
     }
 
-    private static void adicionarParticipantes(Tarefa tarefa){
+    private void adicionarParticipantes(Tarefa tarefa){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Digite quais usuário deseja adicionar a tarefa, pressione enter antes de digitar o próximo participante\n:");
-        ArrayList<Usuario> usuarios = UsuarioController.acharTodosUsuarios();
+        UsuarioController controller = new UsuarioController();
+        ArrayList<Usuario> usuarios = controller.acharTodosUsuarios();
         usuarios.forEach((Usuario usuario) -> System.out.println("[" + usuarios.indexOf(usuario) +"] " + usuario.getNome()));
         System.out.println("[" + usuarios.size() + "] Voltar");
         while(true){
@@ -121,22 +127,22 @@ public class MenuTarefas {
         }
 
     }
-    private static boolean atribuirTarefas(TarefaUsuario tarefa_atribuida){
-        return TarefaController.adicionarParticipante(tarefa_atribuida);
+    private boolean atribuirTarefas(TarefaUsuario tarefa_atribuida){
+        return this.controller.adicionarParticipante(tarefa_atribuida);
     }
 
-    private static void confirmarExclusaoTarefa(Tarefa tarefa) {
+    private void confirmarExclusaoTarefa(Tarefa tarefa) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Deseja Mesmo Excluir a Tarefa \"" + tarefa.getNome() + "\"?");
         System.out.println(" [1] Sim \n [2] Não");
         int opcao = scanner.nextInt();
         switch (opcao){
-            case 1 -> TarefaController.deletarTarefa(tarefa);
+            case 1 -> this.controller.deletarTarefa(tarefa);
         }
         exibirConteudo(projetoTarefas);
     }
 
-    private static void editarTarefa(Tarefa tarefa) {
+    private void editarTarefa(Tarefa tarefa) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("O Que Deseja Editar? \n");
         System.out.println(" [1] Nome \n [2] Descrição \n [3] Prazo \n");
@@ -166,10 +172,10 @@ public class MenuTarefas {
                 tarefa.setPrazo(prazosql);
                 break;
         }
-        TarefaController.atualizarTarefa(tarefa);
+        this.controller.atualizarTarefa(tarefa);
     }
 
-    private static void criarTarefas(Projeto projeto) {
+    private void criarTarefas(Projeto projeto) {
         Scanner scanner = new Scanner(System.in);
         Tarefa tarefa = new Tarefa();
         tarefa.setProject_id(projeto.getId());
@@ -188,7 +194,7 @@ public class MenuTarefas {
         LocalDate localDate = LocalDate.of(ano, mes, dia);
         Date prazosql = Date.valueOf(localDate);
         tarefa.setPrazo(prazosql);
-        boolean criacao = TarefaController.criarTarefa(tarefa);
+        boolean criacao = this.controller.criarTarefa(tarefa);
         if(criacao == false){
             System.out.println("Não Foi Possível Criar a Tarefa.");
         }

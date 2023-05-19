@@ -11,6 +11,10 @@ public class MenuUsuarios implements Menu {
     Usuario usuario;
     UsuarioController controller;
 
+    public MenuUsuarios(){
+        controller = new UsuarioController();
+    }
+
     @Override
     public void exibirConteudo() {
         Scanner scanner = new Scanner(System.in);
@@ -29,7 +33,7 @@ public class MenuUsuarios implements Menu {
 
     private void exibirTodosUsuarios() {
         Scanner scanner = new Scanner(System.in);
-        ArrayList<Usuario> usuarios = UsuarioController.acharTodosUsuarios();
+        ArrayList<Usuario> usuarios = controller.acharTodosUsuarios();
         System.out.println("Escolha um usuario: \n");
         usuarios.forEach((Usuario usuario) -> System.out.println("[" + usuarios.indexOf(usuario) +"] "
                 + usuario.getNome()));
@@ -48,14 +52,14 @@ public class MenuUsuarios implements Menu {
         System.out.println("Informe a Senha Do Usuario: ");
         String senha = scanner.nextLine();
         Usuario usuarioTemp = new Usuario(Usuario.getNextId(), nome, email, senha);
-        UsuarioController.createUsuario(usuarioTemp);
+        controller.createUsuario(usuarioTemp);
     }
 
     private void exibirBuscaUsuario() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Informe o Email Do Usuario: ");
         String email = scanner.nextLine();
-        Usuario usuario = UsuarioController.pesquisarUsuarioEmail(email);
+        Usuario usuario = controller.pesquisarUsuarioEmail(email);
         if(usuario == null){
             System.out.println("Usuário não encontrado!");
             return;
@@ -81,9 +85,10 @@ public class MenuUsuarios implements Menu {
         else System.out.println("Não foram encontrados usuários.");
     }
 
-    private static ArrayList<Tarefa> tarefasAtribuidas(Usuario usuario){
+    private ArrayList<Tarefa> tarefasAtribuidas(Usuario usuario){
         Scanner scanner = new Scanner(System.in);
-        ArrayList<Tarefa> tarefas = TarefaController.acharTarefasAtribuidas(usuario.getId());
+        TarefaController controller = new TarefaController();
+        ArrayList<Tarefa> tarefas = controller.acharTarefasAtribuidas(usuario.getId());
         if(tarefas.size() == 0){
             System.out.println("Nenhuma Tarefa foi atribuída a esse participante.");
         }
@@ -102,7 +107,7 @@ public class MenuUsuarios implements Menu {
         System.out.println(" [1] Sim \n [2] Não");
         int opcao = scanner.nextInt();
         switch (opcao){
-            case 1 -> UsuarioController.deleteUsuario(this.usuario);
+            case 1 -> controller.deleteUsuario(this.usuario);
         }
     }
 
@@ -138,6 +143,6 @@ public class MenuUsuarios implements Menu {
             }
         }
 
-        UsuarioController.updateUsuario(this.usuario);
+        controller.updateUsuario(this.usuario);
     }
 }

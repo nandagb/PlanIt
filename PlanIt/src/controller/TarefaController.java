@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TarefaController {
-    public static boolean criarTarefa(Tarefa tarefa){
+    public boolean criarTarefa(Tarefa tarefa){
         boolean criacao = TarefaServices.validaTarefaCriacao(tarefa);
         if(criacao){
             return true;
@@ -20,7 +20,7 @@ public class TarefaController {
         return false;
     }
 
-    public static boolean deletarTarefa(Tarefa tarefa){
+    public boolean deletarTarefa(Tarefa tarefa){
         boolean delecao = TarefaServices.validaTarefaDelecao(tarefa);
         if(delecao){
             return true;
@@ -28,7 +28,7 @@ public class TarefaController {
         return false;
     }
 
-    public static boolean removerParticipanteTarefa(TarefaUsuario participante_removido){
+    public boolean removerParticipanteTarefa(TarefaUsuario participante_removido){
         boolean delecao = TarefaServices.validaParticipanteRemocao(participante_removido);
         if(delecao){
             return true;
@@ -36,7 +36,7 @@ public class TarefaController {
         return false;
     }
 
-    public static boolean adicionarParticipante(TarefaUsuario tarefa_atribuida){
+    public boolean adicionarParticipante(TarefaUsuario tarefa_atribuida){
         boolean atribuicao = TarefaServices.validaAtribuicao(tarefa_atribuida);
         if(atribuicao){
             return true;
@@ -44,7 +44,7 @@ public class TarefaController {
         return false;
     }
 
-    public static boolean atualizarTarefa(Tarefa tarefa){
+    public boolean atualizarTarefa(Tarefa tarefa){
         boolean att = TarefaServices.validaTarefaAtt(tarefa);
         if(att){
             return true;
@@ -52,32 +52,32 @@ public class TarefaController {
         return false;
     }
 
-    public static Tarefa acharTarefaId(int id){
+    public Tarefa acharTarefaId(int id){
         Tarefa achado = TarefaServices.validaAcharId(id);
         return achado;
     }
 
-    public static Tarefa acharTarefaNome(String nome, int idProjeto){
+    public Tarefa acharTarefaNome(String nome, int idProjeto){
         Tarefa achado = TarefaServices.validaAcharNome(nome, idProjeto);
         return achado;
     }
 
-    public static ArrayList<Tarefa> acharTarefasProjeto(int idProjeto){
+    public ArrayList<Tarefa> acharTarefasProjeto(int idProjeto){
         ArrayList<Tarefa> achado = TarefaServices.validaAcharIdProjeto(idProjeto);
         return achado;
     }
 
-    public static ArrayList<Usuario> acharParticipantesTarefa(int idTarefa){
+    public ArrayList<Usuario> acharParticipantesTarefa(int idTarefa){
         ArrayList<Usuario> achado = TarefaServices.validaAcharIdTarefa(idTarefa);
         return achado;
     }
 
-    public static ArrayList<Tarefa> acharTarefasAtribuidas(int idUsuario){
+    public ArrayList<Tarefa> acharTarefasAtribuidas(int idUsuario){
         ArrayList<Tarefa> achado = TarefaServices.validaAcharIdUsuario(idUsuario);
         return achado;
     }
 
-    public static void toggleConclusaoTarefa(Tarefa tarefa){
+    public void toggleConclusaoTarefa(Tarefa tarefa){
         if (tarefa.getStatus().equals("em_andamento")){
             tarefa.setStatus("finalizado");
         }else{
