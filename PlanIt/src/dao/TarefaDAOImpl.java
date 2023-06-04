@@ -14,7 +14,7 @@ public class TarefaDAOImpl implements TarefaDAO{
 
     public TarefaDAOImpl(){
         if(con == null){
-            con = new DBConnection().getConnection(DBDriver.MYSQL, "planit", "root", "V3r3@dor3sMYSQL");
+            con = new DBConnection().getConnection(DBDriver.MYSQL, "planit", "ezequiel", "");
         }
     }
 

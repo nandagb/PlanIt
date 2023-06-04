@@ -16,7 +16,7 @@ public class RelatorioProjetoDAOImpl {
     Connection con;
     public RelatorioProjetoDAOImpl() {
         if (con == null) {
-            con = new DBConnection().getConnection(DBDriver.MYSQL, "planit", "root", "V3r3@dor3sMYSQL");
+            con = new DBConnection().getConnection(DBDriver.MYSQL, "planit", "ezequiel", "");
         }
     }
     public boolean save(RelatorioProjeto relatorio) {
