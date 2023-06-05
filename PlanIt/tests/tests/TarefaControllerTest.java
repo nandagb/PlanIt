@@ -99,4 +99,15 @@ public class TarefaControllerTest {
         assertEquals(tarefaAndamento.getStatus(), "finalizado");
         assertEquals(tarefaFinalizada.getStatus(), "em_andamento");
     }
+
+    @Test
+    public void acharTodosUsuariosTest(){
+        Date prazo = new Date(2001,11,03);
+        Tarefa tarefaAndamento = new Tarefa(2, "testeAtualizado", "tarefa teste", "em_andamento", prazo, 1);
+        Tarefa tarefaFinalizada = new Tarefa(2, "testeAtualizado", "tarefa teste", "finalizado", prazo, 2);
+        TarefaController.toggleConclusaoTarefa(tarefaAndamento);
+        TarefaController.toggleConclusaoTarefa(tarefaFinalizada);
+        assertEquals(tarefaAndamento.getStatus(), "finalizado");
+        assertEquals(tarefaFinalizada.getStatus(), "em_andamento");
+    }
 }

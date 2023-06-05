@@ -16,15 +16,18 @@ public class UsuarioController {
 	private List<Usuario> listaUsuario = usuarios.getAllUsuarios();
 
 
-    public static void createUsuario(Usuario usuario) {
+    public static boolean createUsuario(Usuario usuario) {
     	if( usuarios.emailEmUso(usuario) ) {
 			System.out.println("Este email já foi cadastrado!");
+			return false;
 		}
 		else if (usuarios.save(usuario) == false) {
 			System.out.println("Este usuário já existe!");
+			return false;
 		}
 		else {
 			System.out.println("Usuário \"" + usuario.getEmail() +  "\" criado com sucesso!");
+			return true;
 		}
     }
 
@@ -36,16 +39,18 @@ public class UsuarioController {
     	return usuarios.getUsuarioByEmail(email);
     }
 
-    public static void updateUsuario(Usuario updatedUsuario) {
-    	usuarios.updateUsuario(updatedUsuario);
+    public static boolean updateUsuario(Usuario updatedUsuario) {
+    	return usuarios.updateUsuario(updatedUsuario);
     }
 
-    public static void deleteUsuario(Usuario usuario) {
+    public static boolean deleteUsuario(Usuario usuario) {
     	if(usuarios.deleteUsuario(usuario)) {
 			System.out.println(" Usuário deletado com sucesso!");
+			return true;
 		}
 		else {
 			System.out.println("Não foi possível deletar o usuário!");
+			return false;
 		}
     }
     

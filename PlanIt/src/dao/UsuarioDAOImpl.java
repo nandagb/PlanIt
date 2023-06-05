@@ -181,6 +181,7 @@ public class UsuarioDAOImpl {
             pst.setString(3, usuario.getSenha());
             pst.setInt(4, usuario.getId());
             int res = pst.executeUpdate();
+            System.out.println(res);
             if(res == 1){
                 return true;
             }
